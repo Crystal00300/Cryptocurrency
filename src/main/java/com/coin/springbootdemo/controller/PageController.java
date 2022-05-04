@@ -11,5 +11,8 @@ public class PageController {
 		return "index";
 	}
 	
-
+	@GetMapping("/about")
+	public String gotoAbout() {
+		return "about";
+	}
 }

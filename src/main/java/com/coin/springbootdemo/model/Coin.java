@@ -124,18 +124,6 @@ public class Coin {
 	public Coin() {
 	}
 
-//	public Integer getId() {
-//		return id;
-//	}
-//
-//	public void setId(Integer id) {
-//		this.id = id;
-//	}
-
-	public Integer getCoid() {
-		return coid;
-	}
-
 	@Override
 	public String toString() {
 		return "Coin [id=" + id + ", coid=" + coid + ", name=" + name + ", symbol=" + symbol + ", slug=" + slug
@@ -159,6 +147,10 @@ public class Coin {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getCoid() {
+		return coid;
 	}
 
 	public void setCoid(Integer coid) {

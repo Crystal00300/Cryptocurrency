@@ -1,11 +1,18 @@
 package com.coin.springbootdemo.controller;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,9 +33,9 @@ public class CoinCointroller {
 	@Autowired
 	private CoinDao coinDao;
 
-	@Scheduled(initialDelay = 2000, fixedRate = 3000) // 定時器 啟動專案 initialDelay 毫秒 後啟動 每 fixedRate 毫秒 RUN一次 需搭配@Component
+	@Scheduled(initialDelay = 2000, fixedRate = 10000) // 定時器 啟動專案 initialDelay 毫秒 後啟動 每 fixedRate 毫秒 RUN一次 需搭配@Component
 	@PostMapping("coin/insert")
-	public void insert() throws JsonProcessingException {
+	public void updateCoin() throws JsonProcessingException {
 		// 測試定時器有沒有動 顯示當前時間
 		System.out.println(LocalDateTime.now());
 
@@ -56,10 +63,10 @@ public class CoinCointroller {
 			Double  circulatingSupply = node2.get(i).get("circulatingSupply").asDouble();
 			Integer selfReportedCirculatingSupply = node2.get(i).get("selfReportedCirculatingSupply").asInt();
 			Double  totalSupply = node2.get(i).get("totalSupply").asDouble();
-//			Double  maxSupply = null;//node2.get(i).get("maxSupply").asDouble(); // 這個KEY有些幣沒有 寫了會報錯
+//			Double  maxSupply   = null;//node2.get(i).get("maxSupply").asDouble(); // 這個KEY有些幣沒有 寫了會報錯
 			Integer isActive    = node2.get(i).get("isActive").asInt();
 			String  lastUpdated = node2.get(i).get("lastUpdated").asText(); // DATE不會寫 先用String
-			String  dateAdded   = node2.get(i).get("dateAdded").asText(); // DATE不會寫 先用String
+			String  dateAdded   = node2.get(i).get("dateAdded").asText();   // DATE不會寫 先用String
 			String  quotes_name = node2.get(i).get("quotes").get(0).get("name").asText();
 			Double  price       = node2.get(i).get("quotes").get(0).get("price").asDouble();
 			Double  volume24h   = node2.get(i).get("quotes").get(0).get("volume24h").asDouble();
@@ -80,7 +87,9 @@ public class CoinCointroller {
 //			Integer auditStatus = node2.get(i).get("auditInfoList").get(0).get("auditStatus").asInt();  //這個KEY有些幣沒有 寫了會報錯
 //			String  reportUrl   = node2.get(i).get("auditInfoList").get(0).get("reportUrl").asText();   //這個KEY有些幣沒有 寫了會報錯
 
+			
 			Coin coin = new Coin();
+			
 			coin.setId(cmcRank); // 依照排名順序給ID的順序 因為要做更新 所以ID不能一直增加 故用cmcRank值只有1到100 (save方法:已經有id的值會自動變更新)
 			coin.setCoid(coid);  // 承上 也可以直接用cmcRank當作主key (在beans頁面的cmcRank上注入@id) 但我想要有id 所以用上面的方法
 			coin.setName(name);
@@ -116,33 +125,29 @@ public class CoinCointroller {
 //			coin.setAuditStatus(auditStatus);
 //			coin.setReportUrl(reportUrl);
 
-			Coin resCoin = coinDao.save(coin);
-//			 System.out.println(resCoin);
+			Coin upCoin = coinDao.save(coin);
 		}
 
 	}
+
+	@Scheduled(initialDelay = 3000, fixedRate = 20000)
+	@GetMapping("coin/getAll")
+	public List<Coin> findAllcoin() {
+		List<Coin> allCoinList = coinDao.findAll();
+		return allCoinList;
+	}
+
+	@GetMapping("coin/page/{pageNumber}")
+	public List<Coin> findByPage(@PathVariable Integer pageNumber) {
+		Pageable pgb = PageRequest.of(pageNumber - 1, 10, Sort.Direction.ASC, "id");
+
+		Page<Coin> page = coinDao.findAll(pgb);
+
+		List<Coin> list = page.getContent();
+
+		return list;
+	}
 }
-//		System.out.println(node2);
-
-//		String str1 = coinstr.substring(coinstr.indexOf("[")+1,coinstr.lastIndexOf("]"));
-//		System.out.println(str1);
-
-		// JAVA字串轉JSON字串
-//		ObjectMapper objectMapper = new ObjectMapper();
-//		String jsonstr = objectMapper.writeValueAsString(str1);
-
-//		System.out.println(jsonstr);
-
-//		//JSON字串轉LIST
-//		List<Coin> coinList = objectMapper.readValue(str1, new TypeReference<List<Coin>>() {});
-//		
-//		System.out.println(coinList);
-//		
-//		//LIST存入SQL
-//		List<Coin> resCoin = coinDao.saveAll(coinList);
-//		
-//		System.out.println(resCoin);
-//		//return resCoin;
 
 
 
