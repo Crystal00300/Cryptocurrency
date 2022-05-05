@@ -64,8 +64,8 @@ public class Coin {
 	@Column(name = "dateAdded")
 	private String dateAdded;
 
-	@Column(name = "quotes_name")
-	private String quotes_name;
+	@Column(name = "quotesName")
+	private String quotesName;
 
 	@Column(name = "price")
 	private Double price;
@@ -131,7 +131,7 @@ public class Coin {
 				+ ", circulatingSupply=" + circulatingSupply + ", selfReportedCirculatingSupply="
 				+ selfReportedCirculatingSupply + ", totalSupply=" + totalSupply + ", maxSupply=" + maxSupply
 				+ ", isActive=" + isActive + ", lastUpdated=" + lastUpdated + ", dateAdded=" + dateAdded
-				+ ", quotes_name=" + quotes_name + ", price=" + price + ", volume24h=" + volume24h + ", marketCap="
+				+ ", quotesName=" + quotesName + ", price=" + price + ", volume24h=" + volume24h + ", marketCap="
 				+ marketCap + ", percentChange1h=" + percentChange1h + ", percentChange24h=" + percentChange24h
 				+ ", percentChange7d=" + percentChange7d + ", percentChange30d=" + percentChange30d
 				+ ", percentChange60d=" + percentChange60d + ", percentChange90d=" + percentChange90d
@@ -261,12 +261,14 @@ public class Coin {
 		this.dateAdded = dateAdded;
 	}
 
-	public String getQuotes_name() {
-		return quotes_name;
+
+
+	public String getQuotesName() {
+		return quotesName;
 	}
 
-	public void setQuotes_name(String quotes_name) {
-		this.quotes_name = quotes_name;
+	public void setQuotesName(String quotesName) {
+		this.quotesName = quotesName;
 	}
 
 	public Double getPrice() {

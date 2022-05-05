@@ -6,7 +6,6 @@
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <jsp:include page="default/myNavbar.jsp" />
 <link rel="stylesheet" href="${contextRoot}/css/coinList.css" >
-
 <!DOCTYPE html>
 <html>
 
@@ -49,7 +48,7 @@
 <script>
 function upCoin(){
          $.ajax({
-            url:'http://localhost:8080/myapp/coin/page/1',
+            url:'http://localhost:8080/myapp/coin/page/6',
             contentType:'application/json; charset=UTF-8',  //送過去的
             dataType:'json', //傳回來的
             method:'get',

@@ -67,7 +67,7 @@ public class CoinCointroller {
 			Integer isActive    = node2.get(i).get("isActive").asInt();
 			String  lastUpdated = node2.get(i).get("lastUpdated").asText(); // DATE不會寫 先用String
 			String  dateAdded   = node2.get(i).get("dateAdded").asText();   // DATE不會寫 先用String
-			String  quotes_name = node2.get(i).get("quotes").get(0).get("name").asText();
+			String  quotesName = node2.get(i).get("quotes").get(0).get("name").asText();
 			Double  price       = node2.get(i).get("quotes").get(0).get("price").asDouble();
 			Double  volume24h   = node2.get(i).get("quotes").get(0).get("volume24h").asDouble();
 			Double  marketCap   = node2.get(i).get("quotes").get(0).get("marketCap").asDouble();
@@ -105,7 +105,7 @@ public class CoinCointroller {
 			coin.setIsActive(isActive);
 			coin.setLastUpdated(lastUpdated);
 			coin.setDateAdded(dateAdded);
-			coin.setQuotes_name(quotes_name);
+			coin.setQuotesName(quotesName);
 			coin.setPrice(price);
 			coin.setVolume24h(volume24h);
 			coin.setMarketCap(marketCap);
