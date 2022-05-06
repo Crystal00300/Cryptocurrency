@@ -7,11 +7,12 @@
 <meta charset="UTF-8">
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
-
+<link rel="stylesheet" href="${contextRoot}/css/slick.css" >
+<link rel="stylesheet" href="${contextRoot}/css/slick-theme.css" >
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light navbar-light ">
   <a class="navbar-brand" href="${contextRoot}/">Shellcoin</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -39,7 +40,7 @@
 
 
 
-
+<script src="${contextRoot}/js/slick.js" ></script>
 <script src="${contextRoot}/js/jquery-3.6.0.min.js" ></script>
 <script src="${contextRoot}/js/bootstrap.bundle.min.js" ></script>
 </body>

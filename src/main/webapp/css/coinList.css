@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
-tr:hover{
-	background-color: #a5cfcc;
+tr:not(:first-child):hover{
+	background-color: rgb(138, 226, 234);
 }
+
+img{
+	width:200px;
+	margin: 0 auto;
+}
+

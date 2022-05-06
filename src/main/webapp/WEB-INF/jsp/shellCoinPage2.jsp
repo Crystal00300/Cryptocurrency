@@ -19,7 +19,8 @@
 		<h1>coin ajax</h1>
 
 			<div>
-				<table class="mytable" id="list_table_json">
+				<table class="table" id="list_table_json">
+				<thead class="bg-primary">
 					<tr>
 						<th>top</th>
 						<th>name</th>
@@ -31,18 +32,21 @@
   						<th>30d</th>
  						<th>60d</th>
 					</tr>
+					</thead>
 				</table>
 				
-				<a href="http://localhost:8080/myapp/">1</a>
-				<a href="http://localhost:8080/myapp/shellcoin/page2">2</a>
-				<a href="http://localhost:8080/myapp/shellcoin/page3">3</a>
-				<a href="http://localhost:8080/myapp/shellcoin/page4">4</a>
-				<a href="http://localhost:8080/myapp/shellcoin/page5">5</a>
-				<a href="http://localhost:8080/myapp/shellcoin/page6">6</a>
-				<a href="http://localhost:8080/myapp/shellcoin/page7">7</a>
-				<a href="http://localhost:8080/myapp/shellcoin/page8">8</a>
-				<a href="http://localhost:8080/myapp/shellcoin/page9">9</a>
-				<a href="http://localhost:8080/myapp/shellcoin/page10">10</a>
+<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+    <a href="http://localhost:8080/myapp/"><button type="button" class="btn btn-link">1</button></a>
+    <button type="button" class="btn btn-primary">2</button>
+    <a href="http://localhost:8080/myapp/shellcoin/page3"><button type="button" class="btn btn-link">3</button></a>
+    <a href="http://localhost:8080/myapp/shellcoin/page4"><button type="button" class="btn btn-link">4</button></a>
+    <a href="http://localhost:8080/myapp/shellcoin/page5"><button type="button" class="btn btn-link">5</button></a>
+    <a href="http://localhost:8080/myapp/shellcoin/page6"><button type="button" class="btn btn-link">6</button></a>
+    <a href="http://localhost:8080/myapp/shellcoin/page7"><button type="button" class="btn btn-link">7</button></a>
+    <a href="http://localhost:8080/myapp/shellcoin/page8"><button type="button" class="btn btn-link">8</button></a>
+    <a href="http://localhost:8080/myapp/shellcoin/page9"><button type="button" class="btn btn-link">9</button></a>
+   <a href="http://localhost:8080/myapp/shellcoin/page10"><button type="button" class="btn btn-link">10</button></a>
+</div>
 				
 		</div>
 <script>
@@ -76,6 +80,7 @@ function upCoin(){
             }
          })
 }
+upCoin();
 window.setInterval(function(){upCoin()},5000);
 
 </script>

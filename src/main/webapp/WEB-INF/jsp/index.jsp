@@ -6,23 +6,56 @@
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <jsp:include page="default/myNavbar.jsp" />
 <link rel="stylesheet" href="${contextRoot}/css/coinList.css" >
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css' >
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
 
 <!DOCTYPE html>
 <html>
 
 <head>
 <meta charset="UTF-8">
-<title>ajax</title>
+<title>ShellCoin</title>
 </head>
 
 <body>
 	<div class="container">
-		<h1>coin ajax</h1>
+
+<p />
+<div>
+  <h2 class="bg-primary p-2">Coin news</h2>
+  <div class="slider responsive">
+    <div>
+      <img src="https://picsum.photos/200/200/?random=2" alt="">
+    </div>
+    <div>
+      <img src="https://picsum.photos/200/200/?random=1" alt="">
+    </div>
+    <div>
+      <img src="https://picsum.photos/200/200/?random=1" alt="">
+    </div>
+    <div>
+      <img src="https://picsum.photos/200/200/?random=1" alt="">
+    </div>
+    <div>
+      <img src="https://picsum.photos/200/200/?random=1" alt="">
+    </div>
+    <div>
+      <img src="https://picsum.photos/200/200/?random=1" alt="">
+    </div>
+    <div>
+      <img src="https://picsum.photos/200/200/?random=1" alt="">
+    </div>
+    <div>
+      <img src="https://picsum.photos/200/200/?random=3" alt="">
+    </div>
+  </div>
+</div>
 
 			<div>
-				<table class="mytable" id="list_table_json">
+				<table class="table" id="list_table_json">
+				<thead class="bg-primary">
 					<tr>
-						<th>top</th>
+						<th scope="col">top</th>
 						<th>name</th>
 						<th>currency</th>
 						<th>price</th>
@@ -31,19 +64,23 @@
   						<th>7d</th>
   						<th>30d</th>
  						<th>60d</th>
+ 						
 					</tr>
+					</thead>
 				</table>
 				
-				<a href="http://localhost:8080/myapp/">1</a>
-				<a href="http://localhost:8080/myapp/shellcoin/page2">2</a>
-				<a href="http://localhost:8080/myapp/shellcoin/page3">3</a>
-				<a href="http://localhost:8080/myapp/shellcoin/page4">4</a>
-				<a href="http://localhost:8080/myapp/shellcoin/page5">5</a>
-				<a href="http://localhost:8080/myapp/shellcoin/page6">6</a>
-				<a href="http://localhost:8080/myapp/shellcoin/page7">7</a>
-				<a href="http://localhost:8080/myapp/shellcoin/page8">8</a>
-				<a href="http://localhost:8080/myapp/shellcoin/page9">9</a>
-				<a href="http://localhost:8080/myapp/shellcoin/page10">10</a>
+<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+    <button type="button" class="btn btn-primary">1</button>
+    <a href="http://localhost:8080/myapp/shellcoin/page2"><button type="button" class="btn btn-link">2</button></a>
+    <a href="http://localhost:8080/myapp/shellcoin/page3"><button type="button" class="btn btn-link">3</button></a>
+    <a href="http://localhost:8080/myapp/shellcoin/page4"><button type="button" class="btn btn-link">4</button></a>
+    <a href="http://localhost:8080/myapp/shellcoin/page5"><button type="button" class="btn btn-link">5</button></a>
+    <a href="http://localhost:8080/myapp/shellcoin/page6"><button type="button" class="btn btn-link">6</button></a>
+    <a href="http://localhost:8080/myapp/shellcoin/page7"><button type="button" class="btn btn-link">7</button></a>
+    <a href="http://localhost:8080/myapp/shellcoin/page8"><button type="button" class="btn btn-link">8</button></a>
+    <a href="http://localhost:8080/myapp/shellcoin/page9"><button type="button" class="btn btn-link">9</button></a>
+    <a href="http://localhost:8080/myapp/shellcoin/page10"><button type="button" class="btn btn-link">10</button></a>
+</div>
 				
 		</div>
 <script>
@@ -77,10 +114,15 @@ function upCoin(){
             }
          })
 }
+upCoin();
 window.setInterval(function(){upCoin()},5000);
 
 </script>
 	</div>
+<script src='https://code.jquery.com/jquery-3.6.0.slim.min.js'></script>
+<script src="${contextRoot}/js/slick.js" ></script>
+<script src="${contextRoot}/js/coinCarousel.js"></script>
+
 </body>
 
 </html>
