@@ -3,6 +3,13 @@
 tr:not(:first-child):hover{
 	background-color: rgb(138, 226, 234);
 }
+th{
+	text-align: center;
+}
+td{
+	text-align: center;
+	font-weight:650;
+}
 img{
 	width:200px;
 	margin: 0 auto;

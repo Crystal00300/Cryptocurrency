@@ -55,16 +55,16 @@
 				<table class="table" id="list_table_json">
 				<thead class="bg-primary">
 					<tr>
-						<th scope="col">top</th>
-						<th>name</th>
-						<th>currency</th>
-						<th>price</th>
-  						<th>1h</th>
-  						<th>24h</th>
-  						<th>7d</th>
-  						<th>30d</th>
- 						<th>60d</th>
- 						
+						<th scope="col">Top</th>
+						<th>Name</th>
+						<th>Currency</th>
+						<th>Price</th>
+  						<th>1h%</th>
+  						<th>24h%</th>
+  						<th>7d%</th>
+  						<th>30d%</th>
+						<th>Volume24h</th>
+ 						<th>Market Cap</th>
 					</tr>
 					</thead>
 				</table>
@@ -99,12 +99,13 @@ function upCoin(){
                 	coinList += '<td>' + value.id + '</td>'
                 	coinList += '<td>' + '<div class="coinName"><img class="coinImg" src="${contextRoot}/images/' + value.symbol + '.png"><h1 class=coinH1>'  + value.name + '</h1></div></td>'
                 	coinList += '<td>' + value.quotesName + '</td>' 
-                	coinList += '<td>' + value.price + '</td>' 
-                	coinList += '<td>' + value.percentChange1h + '</td>' 
-                	coinList += '<td>' + value.percentChange24h + '</td>' 
-                	coinList += '<td>' + value.percentChange7d + '</td>' 
-                	coinList += '<td>' + value.percentChange30d + '</td>' 
-                	coinList += '<td>' + value.percentChange60d + '</td>' 
+                	coinList += '<td class="price">' + value.price + '</td>'
+                	coinList += '<td  type="text" class="1h">' + value.percentChange1h + '</td>' 
+                	coinList += '<td class="24h">' + value.percentChange24h + '</td>' 
+                	coinList += '<td class="7d">' + value.percentChange7d + '</td>' 
+                	coinList += '<td class="30d">' + value.percentChange30d + '</td>' 
+                	coinList += '<td class="vol24h">' + value.volume24h + '</td>' 
+                	coinList += '<td class="market">' + value.marketCap + '</td>' 
                 	coinList += '</tr>'      
                 })
                 $('#list_table_json').append(coinList);
@@ -119,10 +120,10 @@ window.setInterval(function(){upCoin()},5000);
 
 </script>
 	</div>
+
 <script src='https://code.jquery.com/jquery-3.6.0.slim.min.js'></script>
 <script src="${contextRoot}/js/slick.js" ></script>
 <script src="${contextRoot}/js/coinCarousel.js"></script>
-
 </body>
 
 </html>
