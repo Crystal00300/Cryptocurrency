@@ -86,7 +86,7 @@
 <script>
 function upCoin(){
          $.ajax({
-            url:'http://localhost:8080/myapp/coin/page/2',
+            url:'http://localhost:8080/myapp/coin/page/7',
             contentType:'application/json; charset=UTF-8',  //送過去的
             dataType:'json', //傳回來的
             method:'get',
