@@ -138,7 +138,7 @@ public class CoinCointroller {
 
 	}
 
-	//定時從資料庫抓資料 到 路徑網址 預設/coin/getAll
+	//定時從資料庫抓資料 到 路徑網址 預設/coin/getAll (已經在JSP AJAX設定輪詢 這邊就不用在訂時跟資料庫要資料了)
 	//@Scheduled(initialDelay = 3000, fixedRate = 20000)
 	@GetMapping("coin/getAll")
 	public List<Coin> findAllcoin() {
@@ -146,7 +146,8 @@ public class CoinCointroller {
 		return allCoinList;
 
 	}
-
+	
+	//已經在JSP AJAX設定輪詢 這邊就不用在訂時跟資料庫要資料了
 	@GetMapping("coin/page/{pageNumber}")
 	public List<Coin> findByPage(@PathVariable Integer pageNumber) {
 		Pageable pgb = PageRequest.of(pageNumber - 1, 10, Sort.Direction.ASC, "id");

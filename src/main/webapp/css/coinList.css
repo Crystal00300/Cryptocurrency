@@ -3,9 +3,21 @@
 tr:not(:first-child):hover{
 	background-color: rgb(138, 226, 234);
 }
-
 img{
 	width:200px;
 	margin: 0 auto;
 }
-
+.coinName{
+  display: flex;
+  align-items: center;
+}
+.coinImg{
+	height: 18px;
+    width: 18px;
+    margin-right: 24px;
+}
+.coinH1{
+	 font-size: 0.875rem;
+	 text-align:center;
+	 width: 50px;
+}

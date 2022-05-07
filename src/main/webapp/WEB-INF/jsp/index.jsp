@@ -97,7 +97,7 @@ function upCoin(){
                 $.each(result,function(index, value){
                 	coinList += '<tr>'
                 	coinList += '<td>' + value.id + '</td>'
-                	coinList += '<td>' + value.name + '</td>'
+                	coinList += '<td>' + '<div class="coinName"><img class="coinImg" src="${contextRoot}/images/' + value.symbol + '.png"><h1 class=coinH1>'  + value.name + '</h1></div></td>'
                 	coinList += '<td>' + value.quotesName + '</td>' 
                 	coinList += '<td>' + value.price + '</td>' 
                 	coinList += '<td>' + value.percentChange1h + '</td>' 

@@ -6,17 +6,50 @@
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <jsp:include page="default/myNavbar.jsp" />
 <link rel="stylesheet" href="${contextRoot}/css/coinList.css" >
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css' >
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
 <!DOCTYPE html>
 <html>
 
 <head>
 <meta charset="UTF-8">
-<title>ajax</title>
+<title>ShellCoin</title>
 </head>
 
 <body>
 	<div class="container">
-		<h1>coin ajax</h1>
+
+<p />
+<div>
+  <h2 class="bg-primary p-2">Coin news</h2>
+  <div class="slider responsive">
+    <div>
+      <img src="https://picsum.photos/200/200/?random=2" alt="">
+    </div>
+    <div>
+      <img src="https://picsum.photos/200/200/?random=1" alt="">
+    </div>
+    <div>
+      <img src="https://picsum.photos/200/200/?random=1" alt="">
+    </div>
+    <div>
+      <img src="https://picsum.photos/200/200/?random=1" alt="">
+    </div>
+    <div>
+      <img src="https://picsum.photos/200/200/?random=1" alt="">
+    </div>
+    <div>
+      <img src="https://picsum.photos/200/200/?random=1" alt="">
+    </div>
+    <div>
+      <img src="https://picsum.photos/200/200/?random=1" alt="">
+    </div>
+    <div>
+      <img src="https://picsum.photos/200/200/?random=3" alt="">
+    </div>
+  </div>
+</div>
+
 
 			<div>
 				<table class="table" id="list_table_json">
@@ -63,7 +96,7 @@ function upCoin(){
                 $.each(result,function(index, value){
                 	coinList += '<tr>'
                 	coinList += '<td>' + value.id + '</td>'
-                	coinList += '<td>' + value.name + '</td>'
+                	coinList += '<td>' + '<div class="coinName"><img class="coinImg" src="${contextRoot}/images/' + value.symbol + '.png"><h1 class=coinH1>'  + value.name + '</h1></div></td>'
                 	coinList += '<td>' + value.quotesName + '</td>' 
                 	coinList += '<td>' + value.price + '</td>' 
                 	coinList += '<td>' + value.percentChange1h + '</td>' 
@@ -85,6 +118,10 @@ window.setInterval(function(){upCoin()},5000);
 
 </script>
 	</div>
+	
+<script src='https://code.jquery.com/jquery-3.6.0.slim.min.js'></script>
+<script src="${contextRoot}/js/slick.js" ></script>
+<script src="${contextRoot}/js/coinCarousel.js"></script>
 </body>
 
 </html>
