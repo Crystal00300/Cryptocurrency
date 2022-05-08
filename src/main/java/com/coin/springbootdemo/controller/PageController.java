@@ -58,4 +58,5 @@ public class PageController {
  	public String coinListPage10() {
 		return "shellCoinPage10";
 	}
+	
 }

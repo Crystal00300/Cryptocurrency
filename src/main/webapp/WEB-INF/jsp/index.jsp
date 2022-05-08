@@ -84,12 +84,14 @@
 				
 		</div>
 <script>
+
 function upCoin(){
-         $.ajax({
+	 $.ajax({
             url:'http://localhost:8080/myapp/coin/page/1',
             contentType:'application/json; charset=UTF-8',  //送過去的
             dataType:'json', //傳回來的
             method:'get',
+            async:false,
             success: function(result){
             	$('#list_table_json tr td').remove();
                 console.log(result)
@@ -109,14 +111,15 @@ function upCoin(){
                 	coinList += '</tr>'      
                 })
                 $('#list_table_json').append(coinList);
+                
             },
             error: function(err){
                 console.log(err)
             }
          })
 }
-// upCoin();
-window.setInterval(function(){upCoin()},10000);
+upCoin();
+window.setInterval(function(){upCoin()},5000);
 //window.requestAnimationFrame(upCoin);
 
 </script>
