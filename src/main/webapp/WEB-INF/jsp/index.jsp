@@ -115,13 +115,15 @@ function upCoin(){
             }
          })
 }
-upCoin();
-window.setInterval(function(){upCoin()},5000);
+// upCoin();
+window.setInterval(function(){upCoin()},10000);
+//window.requestAnimationFrame(upCoin);
 
 </script>
 	</div>
 
-<script src='https://code.jquery.com/jquery-3.6.0.slim.min.js'></script>
+<!-- <script src='https://code.jquery.com/jquery-3.6.0.slim.min.js'></script> -->
+<script src="${contextRoot}/js/jquery-3.6.0.min.js" ></script>
 <script src="${contextRoot}/js/slick.js" ></script>
 <script src="${contextRoot}/js/coinCarousel.js"></script>
 </body>

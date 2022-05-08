@@ -33,12 +33,14 @@ $(".responsive").slick({
 	
 	
 	
-//千分位
+//.toLocaleString =>千分位 
+//undefined, {maximumFractionDigits: 0} =>最大小數位0 設1則顯示小數點後1位
+//如果用 (td.toFixed(0)).toLocaleString(); 會失敗 只會顯示無小數點 但不會千分位
 
 $('.vol24h,.market').each(function(i, el) {
 	var td = parseFloat($(el).text());
 	if (!isNaN(td)) {
-	$(el).text('$' + td.toLocaleString());
+	$(el).text('$' + td.toLocaleString(undefined, {maximumFractionDigits: 0}));
 	}
 });	
 
@@ -55,7 +57,7 @@ $('.1h,.24h,.7d,.30d').each(function(i,el){
 
 //取小數後兩位 + 錢字號
 
-$('.price').each(function(i,el){
+$('.price,.price1').each(function(i,el){
    var td = parseFloat($(el).text());
    if(!isNaN(td)){
       $(el).text('$' + td.toFixed(2));
@@ -80,7 +82,23 @@ $(function() {
 });
 
 
+//$(function() {
+//  $('.price').each( function() {
+//    var elem = $(this) ,
+//        value = parseFloat( elem.text() );
+//    if( value < $('.price1').text() ) {
+//      elem.css('color', 'red');
+//    }
+//    if( value > $('.price1').text() ) {
+//      elem.css('color', 'green');
+//    }
+//  });
+//});
 
+
+
+
+//只顯示幾位數
 
 //$('.vol24h,.market').each(function(i,el){
 //   var td = parseFloat($(el).text());

@@ -32,7 +32,7 @@ public class CoinCointroller {
 	@Autowired
 	private CoinDao coinDao;
 	                                                    // 需搭配@Component
-	@Scheduled(initialDelay = 2000, fixedRate = 10000)  // 定時器 啟動專案 initialDelay 毫秒 後啟動 每 fixedRate 毫秒 RUN一次
+	@Scheduled(initialDelay = 2000, fixedRate = 30000)  // 定時器 啟動專案 initialDelay 毫秒 後啟動 每 fixedRate 毫秒 RUN一次
 	@PostMapping("coin/insert")
 	public void updateCoin() throws JsonProcessingException {
 		// 測試定時器有沒有動 顯示當前時間
