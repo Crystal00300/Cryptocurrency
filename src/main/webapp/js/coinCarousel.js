@@ -33,6 +33,7 @@ $(".responsive").slick({
 	
 	
 	
+	
 //.toLocaleString =>千分位 
 //(undefined, {maximumFractionDigits: 0}) =>去小數點 設1則顯示小數點後1位
 //如果用 (td.toFixed(0)).toLocaleString(); 會失敗 只會顯示無小數點 但不會千分位
@@ -80,6 +81,65 @@ $(function() {
     }
   });
 });
+	
+	
+	
+//上面的function全部封裝起來 讓setinterval再跑時候讀取	
+	
+function upjquery(){
+	
+//.toLocaleString =>千分位 
+//(undefined, {maximumFractionDigits: 0}) =>去小數點 設1則顯示小數點後1位
+//如果用 (td.toFixed(0)).toLocaleString(); 會失敗 只會顯示無小數點 但不會千分位
+
+$('.vol24h,.market').each(function(i, el) {
+	var td = parseFloat($(el).text());
+	if (!isNaN(td)) {
+	$(el).text('$' + td.toLocaleString(undefined, {maximumFractionDigits: 0}));
+	}
+});	
+
+
+//取小數後2位+百分比
+
+
+$('.1h,.24h,.7d,.30d').each(function(i,el){
+   var td = parseFloat($(el).text());
+   if(!isNaN(td)){
+      $(el).text(td.toFixed(2) + '%');
+   }
+});	
+
+//取小數後兩位 + 前面加上錢字號
+
+$('.price,.price1').each(function(i,el){
+   var td = parseFloat($(el).text());
+   if(!isNaN(td)){
+      $(el).text('$' + td.toFixed(2));
+   }
+});	
+
+
+//判斷大於0顯綠 反之顯紅
+
+
+$(function() {
+  $('.1h,.24h,.7d,.30d').each( function() {
+    var elem = $(this) ,
+        value = parseFloat( elem.text() );
+    if( value < 0 ) {
+      elem.css('color', 'red');
+    }
+    if( value > 0 ) {
+      elem.css('color', 'green');
+    }
+  });
+});
+
+}
+
+
+
 
 
 //$(function() {

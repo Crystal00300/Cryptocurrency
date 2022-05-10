@@ -5,9 +5,6 @@
 
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <jsp:include page="default/myNavbar.jsp" />
-<link rel="stylesheet" href="${contextRoot}/css/coinList.css" >
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css' >
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
 
 <!DOCTYPE html>
 <html>
@@ -70,16 +67,16 @@
 				</table>
 				
 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-    <a href="http://localhost:8080/myapp/"><button type="button" class="btn btn-link">1</button></a>
-    <a href="http://localhost:8080/myapp/shellcoin/page2"><button type="button" class="btn btn-link">2</button></a>
-    <a href="http://localhost:8080/myapp/shellcoin/page3"><button type="button" class="btn btn-link">3</button></a>
-    <a href="http://localhost:8080/myapp/shellcoin/page4"><button type="button" class="btn btn-link">4</button></a>
+    <a href="${contextRoot}/"><button type="button" class="btn btn-link">1</button></a>
+    <a href="${contextRoot}/shellcoin/page2"><button type="button" class="btn btn-link">2</button></a>
+    <a href="${contextRoot}/shellcoin/page3"><button type="button" class="btn btn-link">3</button></a>
+    <a href="${contextRoot}/shellcoin/page4"><button type="button" class="btn btn-link">4</button></a>
     <button type="button" class="btn btn-primary">5</button>
-    <a href="http://localhost:8080/myapp/shellcoin/page6"><button type="button" class="btn btn-link">6</button></a>
-    <a href="http://localhost:8080/myapp/shellcoin/page7"><button type="button" class="btn btn-link">7</button></a>
-    <a href="http://localhost:8080/myapp/shellcoin/page8"><button type="button" class="btn btn-link">8</button></a>
-    <a href="http://localhost:8080/myapp/shellcoin/page9"><button type="button" class="btn btn-link">9</button></a>
-   <a href="http://localhost:8080/myapp/shellcoin/page10"><button type="button" class="btn btn-link">10</button></a>
+    <a href="${contextRoot}/shellcoin/page6"><button type="button" class="btn btn-link">6</button></a>
+    <a href="${contextRoot}/shellcoin/page7"><button type="button" class="btn btn-link">7</button></a>
+    <a href="${contextRoot}/shellcoin/page8"><button type="button" class="btn btn-link">8</button></a>
+    <a href="${contextRoot}/shellcoin/page9"><button type="button" class="btn btn-link">9</button></a>
+    <a href="${contextRoot}/shellcoin/page10"><button type="button" class="btn btn-link">10</button></a>
 </div>
 				
 		</div>
@@ -109,6 +106,7 @@ function upCoin(){
                     coinList += '</tr>'      
                 })
                 $('#list_table_json').append(coinList);
+                upjquery();
             },
             error: function(err){
                 console.log(err)
@@ -116,14 +114,15 @@ function upCoin(){
          })
 }
 upCoin();
-window.setInterval(function(){upCoin()},5000);
+window.setInterval(function(){upCoin()},10000);
 
 </script>
 	</div>
 	
-<script src='https://code.jquery.com/jquery-3.6.0.slim.min.js'></script>
+<!-- <script src='https://code.jquery.com/jquery-3.6.0.slim.min.js'></script> -->
 <script src="${contextRoot}/js/slick.js" ></script>
 <script src="${contextRoot}/js/coinCarousel.js"></script>
+<script src="${contextRoot}/js/jquery-3.6.0.min.js" ></script>
 </body>
 
 </html>

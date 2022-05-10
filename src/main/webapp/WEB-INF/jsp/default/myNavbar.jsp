@@ -8,8 +8,11 @@
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
 <link rel="stylesheet" href="${contextRoot}/css/slick.css" >
-<link rel="stylesheet" href="${contextRoot}/css/slick-theme.css" >
-<link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="${contextRoot}/css/bootstrap.min.css">
+<link rel="stylesheet" href="${contextRoot}/css/coinList.css" >
+<%-- <link rel="stylesheet" href="${contextRoot}/css/slick-theme.css" > --%>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light navbar-light ">
@@ -41,6 +44,7 @@
 
 
 <script src="${contextRoot}/js/slick.js" ></script>
+<script src="${contextRoot}/js/coinCarousel.js"></script>
 <script src="${contextRoot}/js/jquery-3.6.0.min.js" ></script>
 <script src="${contextRoot}/js/bootstrap.bundle.min.js" ></script>
 </body>

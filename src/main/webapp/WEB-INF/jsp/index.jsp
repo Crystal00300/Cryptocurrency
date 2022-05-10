@@ -5,9 +5,6 @@
 
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <jsp:include page="default/myNavbar.jsp" />
-<link rel="stylesheet" href="${contextRoot}/css/coinList.css" >
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css' >
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
 
 <!DOCTYPE html>
 <html>
@@ -17,7 +14,7 @@
 <title>ShellCoin</title>
 </head>
 
-<body>
+<body id="test">
 	<div class="container">
 
 <p />
@@ -71,27 +68,25 @@
 				
 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
     <button type="button" class="btn btn-primary">1</button>
-    <a href="http://localhost:8080/myapp/shellcoin/page2"><button type="button" class="btn btn-link">2</button></a>
-    <a href="http://localhost:8080/myapp/shellcoin/page3"><button type="button" class="btn btn-link">3</button></a>
-    <a href="http://localhost:8080/myapp/shellcoin/page4"><button type="button" class="btn btn-link">4</button></a>
-    <a href="http://localhost:8080/myapp/shellcoin/page5"><button type="button" class="btn btn-link">5</button></a>
-    <a href="http://localhost:8080/myapp/shellcoin/page6"><button type="button" class="btn btn-link">6</button></a>
-    <a href="http://localhost:8080/myapp/shellcoin/page7"><button type="button" class="btn btn-link">7</button></a>
-    <a href="http://localhost:8080/myapp/shellcoin/page8"><button type="button" class="btn btn-link">8</button></a>
-    <a href="http://localhost:8080/myapp/shellcoin/page9"><button type="button" class="btn btn-link">9</button></a>
-    <a href="http://localhost:8080/myapp/shellcoin/page10"><button type="button" class="btn btn-link">10</button></a>
+    <a href="${contextRoot}/shellcoin/page2"><button type="button" class="btn btn-link">2</button></a>
+    <a href="${contextRoot}/shellcoin/page3"><button type="button" class="btn btn-link">3</button></a>
+    <a href="${contextRoot}/shellcoin/page4"><button type="button" class="btn btn-link">4</button></a>
+    <a href="${contextRoot}/shellcoin/page5"><button type="button" class="btn btn-link">5</button></a>
+    <a href="${contextRoot}/shellcoin/page6"><button type="button" class="btn btn-link">6</button></a>
+    <a href="${contextRoot}/shellcoin/page7"><button type="button" class="btn btn-link">7</button></a>
+    <a href="${contextRoot}/shellcoin/page8"><button type="button" class="btn btn-link">8</button></a>
+    <a href="${contextRoot}/shellcoin/page9"><button type="button" class="btn btn-link">9</button></a>
+    <a href="${contextRoot}/shellcoin/page10"><button type="button" class="btn btn-link">10</button></a>
 </div>
 				
 		</div>
 <script>
-
 function upCoin(){
 	 $.ajax({
             url:'http://localhost:8080/myapp/coin/page/1',
             contentType:'application/json; charset=UTF-8',  //送過去的
             dataType:'json', //傳回來的
             method:'get',
-            async:false,
             success: function(result){
             	$('#list_table_json tr td').remove();
                 console.log(result)
@@ -111,7 +106,7 @@ function upCoin(){
                 	coinList += '</tr>'      
                 })
                 $('#list_table_json').append(coinList);
-                
+                upjquery();
             },
             error: function(err){
                 console.log(err)
@@ -119,9 +114,8 @@ function upCoin(){
          })
 }
 upCoin();
-window.setInterval(function(){upCoin()},5000);
+window.setInterval(function(){upCoin()},10000);
 //window.requestAnimationFrame(upCoin);
-
 </script>
 	</div>
 

@@ -59,4 +59,8 @@ public class PageController {
 		return "shellCoinPage10";
 	}
 	
+	@GetMapping("/test")
+	public String gotoTest() {
+		return "test";
+	}
 }
