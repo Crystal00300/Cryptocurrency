@@ -8,23 +8,21 @@ CREATE DATABASE CoinShell
 
 USE CoinShell
 CREATE TABLE Members(
-Id INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-CustomizedUserName NVARCHAR(50) NOT NULL,
+Id INT IDENTITY(1000,5) PRIMARY KEY NOT NULL,
+DisplayUserName NVARCHAR(50) NOT NULL,
 CustomizedUserAvatar NVARCHAR(max) NOT NULL,
-E_Mail NVARCHAR(50) NOT NULL UNIQUE,
+E_Mail NVARCHAR(100) NOT NULL UNIQUE,
 Password NVARCHAR(50) NOT NULL,
-MyShell MONEY ,
+MyShell MONEY,
 IsPremium NVARCHAR(2) NOT NULL,
-JoINTime Date NOT NULL,
-
-Recommender  NVARCHAR(50)  /*這個地方應該要參照Members的欄位，不能讓使用者填一個不存在的E_mail*/
+JoinTime Date NOT NULL,
+/*用戶邀請新會員時, 提供給其註冊填寫的Referral ID 等同於 Member Id*/
 )
-
-
 
 /*CREATE TABLE Recommender(
 Id INT UNIQUE NOT NULL ,
 )*/
+
 
 Use CoinShell
 CREATE TABLE Cryptocurrency(
@@ -57,7 +55,7 @@ volume24hTwd DECIMAL(38,4),
 
 Use CoinShell
 
-CREATE TABLE Sets_of_Investmen(
+CREATE TABLE Sets_of_Investments(
 Id INT REFERENCES Members(Id),
 Order_of_Sets INT NOT NULL unique ,
 Element_of_Set1 NVARCHAR(50),
@@ -80,14 +78,13 @@ Element_of_Set17 NVARCHAR(50),
 Element_of_Set18 NVARCHAR(50),
 Element_of_Set19 NVARCHAR(50),
 Element_of_Set20 NVARCHAR(50),
-
 )
 
 
 USE CoinShell
 Create TABLE Personal_Forum_Information (
 Id INT REFERENCES Members(Id),
-Total_Posted_Artical INT /*應該要和Article_Of_Members做結合，依照帳號抓出上傳的文章數量*/,
+Total_Posted_Articles INT /*應該要和Article_Of_Members做結合，依照帳號抓出上傳的文章數量*/,
 )
 
 USE CoinShell
@@ -96,7 +93,7 @@ Id INT IDENTITY(1,1) NOT NULL,
 Title NVARCHAR(100) NOT NULL,
 E_Mail_Of_Uploader NVARCHAR(50) NOT NULL ,
 Content_Of_Article NVARCHAR(max),
-Isvisible INT ,
+IsVisible INT ,
 Upload_Date DATE)
 
 
@@ -116,7 +113,7 @@ Members_Id INT REFERENCES Members(Id),
 Date TIMESTAMP,
 Title  NVARCHAR(30),
 Content_Of_Article NVARCHAR(MAX),
-Flair NVARCHAR(30)
+Flair NVARCHAR(30)  /*flair: 文章的標籤*/
 );
 
 
