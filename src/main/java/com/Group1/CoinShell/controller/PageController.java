@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Group1.CoinShell.model.Cryptocurrency;
-import com.Group1.CoinShell.service.CryptocurrencyInformationService;
+import com.Group1.CoinShell.model.Hoxton.Cryptocurrency;
+import com.Group1.CoinShell.service.Hoxton.CryptocurrencyInformationService;
 
 @Controller
 
@@ -29,7 +29,22 @@ public class PageController {
 		return "/test";
 	}
 	
-
+	@GetMapping("/about")
+	public String gotoAbout() {
+		return "about";
+	}
+	
+	@GetMapping("/message/ajaxPage")
+	public String ajaxPage() {
+		return "ajaxMessage";
+	}
+	
+	@GetMapping("/viewAllJax")
+	public String viewAllAjaxPage() {
+		return "/viewAll";
+	}
+	
+	
 	
 
 	

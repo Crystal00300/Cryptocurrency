@@ -58,7 +58,7 @@ body {
 				<li class="nav-item active"><a class="nav-link" href="#">About
 						us<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">BeachTown</a>
+				<li class="nav-item"><a class="nav-link" href="${contextRoot}/viewAll">BeachTown</a>
 				</li>
 				<li class="nav-item"><a class="nav-link" href="#">Portfolio</a>
 				</li>

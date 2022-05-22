@@ -29,6 +29,7 @@ function upCoin() {
             console.log(response.json())
         }).then(function(array) {
             $.each(array, function(index, value) {
+
                 $(".cointable").append(`
                         <tr>
                         <th scope="row">` + value.id + `</th>
@@ -41,9 +42,74 @@ function upCoin() {
                         <td>` + value.percentChange30d.toFixed(2) + `%</td>
                         <td>$` + value.volume24h.toFixed(2).toString().replace(/(\d)(?=(\d{3})+\.)/g, "$1,") + `</td>
                         <td>$` + value.marketCap.toFixed(2).toString().replace(/(\d)(?=(\d{3})+\.)/g, "$1,") + `</td>
-                        <td>$` + value.marketCap.toFixed(2).toString().replace(/(\d)(?=(\d{3})+\.)/g, "$1,") + `</td>
-                    </tr>
-                        `)
+                        <td>
+                        <div class="chart-container">
+                        <canvas id="canvas` + value.id + `" width="100%" height="100%"></canvas>
+                        </div>
+                        </tr>`);
+                var xmlHttp = new XMLHttpRequest();
+                var currencyName = value.symbol;
+                var url = "http://localhost:8080/coinshell/historical/get30days?currencyName=" + value.symbol;
+                xmlHttp.open("GET", url, true);
+                xmlHttp.send();
+                xmlHttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var data = JSON.parse(this.responseText);
+                        var days = data.map(function(elem) {
+                            return elem.informationDate
+                                .substr(0, 14).replace('T', '').replace('-', '').replace('-', '').replace(':', '')
+                        });
+                        var price = data.map(function(elem) {
+                            return elem.USD_Price_of_Cryptocurrency;
+                        })
+                        const ctx = document.getElementById('canvas' + value.id).getContext('2d');
+                        // alert(123)
+                        const myChart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: days,
+                                pointHitRadius: 0,
+                                datasets: [{
+                                    label: 'US',
+                                    data: price,
+                                    backgroundColor: [
+                                        'transparent'
+                                    ],
+                                    borderColor: 'green',
+                                    borderWidth: 1,
+                                    lineTension: 0,
+                                    pointRadius: 0,
+
+                                }]
+                            },
+                            options: {
+                                plugins: {
+                                    tooltip: {
+                                        mode: 'nearest',
+                                        intersect: false
+                                    }
+                                },
+                                element: {
+                                    line: {
+                                        lineTension: 0
+                                    }
+                                },
+                                scales: {
+                                    xAxes: [{
+                                        type: 'time',
+                                        time: {
+                                            unit: 'hour',
+                                        }
+
+                                    }],
+                                    yAxes: {
+                                        beginAtZero: false
+                                    }
+                                }
+                            }
+                        });
+                    }
+                };
             })
         })
     })
