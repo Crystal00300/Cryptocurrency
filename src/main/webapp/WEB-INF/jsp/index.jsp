@@ -14,10 +14,12 @@
                 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet">
                 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
                 <link rel="stylesheet" href="/resources/demos/style.css">
+                <link rel="stylesheet" type="text/css" href="${contextRoot}/css/indexCss.css">
+                
                 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
                 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
                 <script src="${contextRoot}/javascripts/indexJs.js"></script>
-                <link rel="stylesheet" type="text/css" href="${contextRoot}/css/indexCss.css">
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             </head>
 
             <body>
@@ -62,33 +64,16 @@
                                             <th scope="col">30d%</th>
                                             <th scope="col">Volume24h</th>
                                             <th scope="col">Market Cap</th>
+                                            <th scope="col">Line Chart</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody class="cointable">
+<!--                                     這邊塞貨幣資訊 -->
                                     </tbody>
                                 </table>
                             </div>
-                            <div id="focus">
-                                <thead>
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Top</th>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Currency</th>
-                                                <th scope="col">Price</th>
-                                                <th scope="col">1h%</th>
-                                                <th scope="col">24h%</th>
-                                                <th scope="col">7d%</th>
-                                                <th scope="col">30d%</th>
-                                                <th scope="col">Volume24h</th>
-                                                <th scope="col">Market Cap</th>
-                                            </tr>
-                                        </thead>
-
-                                    </table>
-                                </thead>
-                            </div>
+                        
                         </div>
 
 
