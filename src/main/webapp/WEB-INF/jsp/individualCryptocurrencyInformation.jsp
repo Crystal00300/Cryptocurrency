@@ -61,13 +61,16 @@
                                         <span>(最低價格)</span>
                                         <span> High:</span>
                                         <span>(最高價格)</span>
-                                        <form action="" method="get">
-                                            <select class="selectpicker d-inline" data-style="btn-info">
-                                                <option>24h</option>
-                                                <option>7d</option>
-                                                <option>30d</option>  
-                                              </select>
-                                        </form>
+                                        <div class="dropdown d-inline-block">
+                                            <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          24h
+                                        </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="#">24h</a>
+                                                <a class="dropdown-item" href="#">7d</a>
+                                                <a class="dropdown-item" href="#">30d</a>
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </div>

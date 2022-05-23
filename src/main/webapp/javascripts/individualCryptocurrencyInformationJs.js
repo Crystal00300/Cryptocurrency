@@ -54,7 +54,7 @@ $("#page-news").click(function() {
             $("#news").append(`<div class="card mb-3" style="width: 150;">
     <div class="row no-gutters">
         <div class="col-md-4">
-            <img width="100%" height="100%" src="` + value.imageOfNews + `">
+            <img width="300" height="200" src="` + value.imageOfNews + `">
         </div>
         <div class="col-md-8">
             <div class="new-card-body">
@@ -89,13 +89,10 @@ $("#page-historical").click(function() {
         })
     })
 })
-
-
 var xmlHttp = new XMLHttpRequest();
 var url = "http://localhost:8080/coinshell/historical/get30days?currencyName=" + currencyName
 xmlHttp.open("GET", url, true);
-xmlHttp.send();
-
+xmlHttp.send()
 xmlHttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var data = JSON.parse(this.responseText);

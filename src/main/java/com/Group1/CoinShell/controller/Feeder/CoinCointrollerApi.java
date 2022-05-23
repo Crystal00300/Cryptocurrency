@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -142,8 +143,8 @@ public class CoinCointrollerApi {
 	//定時從資料庫抓資料 到 路徑網址 預設/coin/getAll (已經在JSP AJAX設定輪詢 這邊就不用在訂時跟資料庫要資料了)
 	//@Scheduled(initialDelay = 3000, fixedRate = 20000)
 	@GetMapping("coin/getAll")
-	public List<Coin> findAllcoin() {
-		List<Coin> allCoinList = coinDao.findAll();
+	public List<Coin> findAllcoin(Coin coin) {
+		List<Coin> allCoinList = coinService.findAll(coin);
 		return allCoinList;
 	}
 	//http://localhost:8080/coinshell/coin/getAll
@@ -167,5 +168,19 @@ public class CoinCointrollerApi {
 		//http://localhost:8080/coinshell/coin/getlastest?currencyName=btc
 		
 	}
+	
+	
+	//透過回傳NAME查詢
+	@GetMapping("/watch")
+	public List<Coin> watchCoinName(Model model, @RequestParam("name") String name) {
+		
+		List<Coin> coin = coinService.findByName(name);
+		
+//		model.addAttribute("watchlist", coin);
+		
+		return coin;
+	}
+	
+
 	
 }

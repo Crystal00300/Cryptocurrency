@@ -1,0 +1,29 @@
+diff a/CoinShell/src/main/webapp/WEB-INF/jsp/index.jsp b/CoinShell/src/main/webapp/WEB-INF/jsp/index.jsp	(rejected hunks)
+@@ -56,9 +56,12 @@
+                     
+                     .news-image {
+                         width: 100%;
+-                        height: 200px;
++                        height: auto;
+                         border: 3px rgb(30, 16, 187) dashed;
+-                        flex-direction: row-reverse
++                    }
++                    .news-image img{
++                   
++                        margin: 0 20px 0 20px ;
+                     }
+                     
+                     .main {
+@@ -150,10 +153,9 @@
+                             </div>
+                         </div>
+                     </div>
+-
+-
+-
+                 </div>
++                
++                
+                 <script>
+                     $(function() {
+                         upCoin();

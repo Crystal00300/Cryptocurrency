@@ -29,22 +29,7 @@ public class PageController {
 		return "/test";
 	}
 	
-	@GetMapping("/about")
-	public String gotoAbout() {
-		return "about";
-	}
-	
-	@GetMapping("/message/ajaxPage")
-	public String ajaxPage() {
-		return "ajaxMessage";
-	}
-	
-	@GetMapping("/viewAllJax")
-	public String viewAllAjaxPage() {
-		return "/viewAll";
-	}
-	
-	
+
 	
 
 	

@@ -6,6 +6,7 @@ $(function() {
 $(function() {
         upCoin();
     })
+    
     // $(function(){
     //     某個方法();
     // })
@@ -20,136 +21,115 @@ let month = day.getMonth() + 1
 month = (month < 10 ? '0' : '') + month
 var today = day.getFullYear() + "-" + month + "-" + day.getDate();
 //這邊定義今天的日期，格式為yyyy-MM-dd (2022-05-20)
+//
+//function upCoin() {
+//    $(function() {
+//        $(".cointable").empty();
+//        fetch("http://localhost:8080/coinshell/coin/getAll").then(function(response) {
+//            return response.json();
+//            console.log(response.json())
+//        }).then(function(array) {
+//            $.each(array, function(index, value) {
+//                $(".cointable").append(`
+//                        <tr>
+//                        <th scope="row">` + value.id + `</th>
+//                        <td>` + `<img class=currencyIcon src="` + contextRoot + `/images/currencyIcon/` + value.symbol + `.png" alt="">` + `<a href="http://localhost:8080/coinshell/individualCryptocurrencyInformation?currencyName=` + value.symbol + `&currentlyDay=` + today + `">` + value.name + `</a></td>
+//                        <td>` + value.symbol + `</td>
+//                        <td>$` + value.price.toFixed(2) + `</td>
+//                        <td>` + value.percentChange1h.toFixed(2) + `%</td>
+//                        <td>` + value.percentChange24h.toFixed(2) + `%</td>
+//                        <td>` + value.percentChange7d.toFixed(2) + `%</td>
+//                        <td>` + value.percentChange30d.toFixed(2) + `%</td>
+//                        <td>$` + value.volume24h.toFixed(2) + `</td>
+//                        <td>$` + value.marketCap.toFixed(2) + `</td>
+//                    </tr>
+//                        `)
+//            })
+//        })
+//    })
+//}
+////設定間隔時間
+//window.setInterval(function() {
+//    upCoin()
+//}, 10000);
 
-function upCoin() {
-    $(function() {
-        $(".cointable").empty();
-        fetch("http://localhost:8080/coinshell/coin/getAll").then(function(response) {
-            return response.json();
-            console.log(response.json())
-        }).then(function(array) {
-            $.each(array, function(index, value) {
 
-                $(".cointable").append(`
-                        <tr>
-                        <th scope="row">` + value.id + `</th>
-                        <td>` + `<img class=currencyIcon src="` + contextRoot + `/images/currencyIcon/` + value.symbol + `.png" alt="">` + `<a href="http://localhost:8080/coinshell/individualCryptocurrencyInformation?currencyName=` + value.symbol + `&currentlyDay=` + today + `">` + value.name + `</a></td>
-                        <td>` + value.symbol + `</td>
-                        <td>$` + value.price.toFixed(2).toString().replace(/(\d)(?=(\d{3})+\.)/g, "$1,") + `</td>
-                        <td>` + value.percentChange1h.toFixed(2) + `%</td>
-                        <td>` + value.percentChange24h.toFixed(2) + `%</td>
-                        <td>` + value.percentChange7d.toFixed(2) + `%</td>
-                        <td>` + value.percentChange30d.toFixed(2) + `%</td>
-                        <td>$` + value.volume24h.toFixed(2).toString().replace(/(\d)(?=(\d{3})+\.)/g, "$1,") + `</td>
-                        <td>$` + value.marketCap.toFixed(2).toString().replace(/(\d)(?=(\d{3})+\.)/g, "$1,") + `</td>
-                        <td>
-                        <div class="chart-container">
-                        <canvas id="canvas` + value.id + `" width="100%" height="100%"></canvas>
-                        </div>
-                        </tr>`);
-                var xmlHttp = new XMLHttpRequest();
-                var currencyName = value.symbol;
-                var url = "http://localhost:8080/coinshell/historical/get30days?currencyName=" + value.symbol;
-                xmlHttp.open("GET", url, true);
-                xmlHttp.send();
-                xmlHttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        var data = JSON.parse(this.responseText);
-                        var days = data.map(function(elem) {
-                            return elem.informationDate
-                                .substr(0, 14).replace('T', '').replace('-', '').replace('-', '').replace(':', '')
-                        });
-                        var price = data.map(function(elem) {
-                            return elem.USD_Price_of_Cryptocurrency;
-                        })
-                        const ctx = document.getElementById('canvas' + value.id).getContext('2d');
-                        // alert(123)
-                        const myChart = new Chart(ctx, {
-                            type: 'line',
-                            data: {
-                                labels: days,
-                                pointHitRadius: 0,
-                                datasets: [{
-                                    label: 'US',
-                                    data: price,
-                                    backgroundColor: [
-                                        'transparent'
-                                    ],
-                                    borderColor: 'green',
-                                    borderWidth: 1,
-                                    lineTension: 0,
-                                    pointRadius: 0,
 
-                                }]
-                            },
-                            options: {
-                                plugins: {
-                                    tooltip: {
-                                        mode: 'nearest',
-                                        intersect: false
-                                    }
-                                },
-                                element: {
-                                    line: {
-                                        lineTension: 0
-                                    }
-                                },
-                                scales: {
-                                    xAxes: [{
-                                        type: 'time',
-                                        time: {
-                                            unit: 'hour',
-                                        }
-
-                                    }],
-                                    yAxes: {
-                                        beginAtZero: false
-                                    }
-                                }
-                            }
-                        });
-                    }
-                };
-            })
-        })
-    })
+function upCoin(){
+	 $.ajax({
+            url:'http://localhost:8080/coinshell/coin/getAll',
+            contentType:'application/json; charset=UTF-8',  //送過去的
+            dataType:'json', //傳回來的
+            method:'get',
+            success: function(result){
+            	$('#top tr td').remove();
+                console.log(result)
+                coinList = '';
+                $.each(result,function(index, value){
+                	coinList += '<tr>'
+                	coinList += '<td>' + value.id + '</td>'
+                	
+                	coinList += '<td><input type="checkbox" style="height:30px width:30px" id="watch' + value.id + '" value="' + value.name + '" onClick="watch(' + value.id + ')"></td>'
+//                	coinList += '<td><button id="watch' + value.id + '" value="' + value.name + '" onClick="watch(' + value.id + ')">watch</button></td>'
+                	
+                	coinList += '<td><img class=currencyIcon src="' + contextRoot + '/images/currencyIcon/' + value.symbol + '.png" alt=""><a href="http://localhost:8080/coinshell/individualCryptocurrencyInformation?currencyName=' + value.symbol + '&currentlyDay=' + value.lastUpdated.substr(0, 10) + '">' + value.name + '</a></td>'
+                	coinList += '<td>' + value.symbol + '</td>' 
+                	coinList += '<td class="price">'  + value.price + '</td>'
+                	coinList += '<td class="1h">'     + value.percentChange1h  + '</td>' 
+                	coinList += '<td class="24h">'    + value.percentChange24h + '</td>' 
+                	coinList += '<td class="7d">'     + value.percentChange7d  + '</td>' 
+                	coinList += '<td class="30d">'    + value.percentChange30d + '</td>' 
+                	coinList += '<td class="vol24h">' + value.volume24h + '</td>' 
+                	coinList += '<td class="market">' + value.marketCap + '</td>' 
+                	coinList += '</tr>'      
+                })
+                $('#top').append(coinList);
+                upjquery();
+            },
+            error: function(err){
+                console.log(err)
+            } 
+         })
 }
-//設定間隔時間
-window.setInterval(function() {
-    upCoin()
-}, 10000);
 
-$(".responsive").slick({
-    dots: true,
-    infinite: false,
-    speed: 300,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    responsive: [{
-            breakpoint: 1024,
-            settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                infinite: true,
-                dots: true
-            }
-        },
-        {
-            breakpoint: 600,
-            settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2
-            }
-        },
-        {
-            breakpoint: 480,
-            settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
-            }
-        }
-    ]
-});
+//每30秒更新一次
+window.setInterval(function(){upCoin()},30000);
+
+
+function watch(id){
+  var name = document.getElementById("watch" + id).value;
+	 $.ajax({
+            url:'http://localhost:8080/coinshell/watch?name=' + name,
+            contentType:'application/json; charset=UTF-8',  //送過去的
+            dataType:'json', //傳回來的
+            method:'get',
+            success: function(result){
+                console.log(result)
+                coinList = '';
+                $.each(result,function(index, value){
+                	coinList += '<tr>'
+                	coinList += '<td>' + value.id + '</td>'
+                	coinList += '<td><a href="' + contextRoot + '/watch/' + value.name + '"><button>watch</button></a></td>'
+                	coinList += '<td><img class=currencyIcon src="' + contextRoot + '/images/currencyIcon/' + value.symbol + '.png" alt=""><a href="http://localhost:8080/coinshell/individualCryptocurrencyInformation?currencyName=' + value.symbol + '&currentlyDay=' + value.lastUpdated.substr(0, 10) + '">' + value.name + '</a></td>'
+                	coinList += '<td>' + value.symbol + '</td>' 
+                	coinList += '<td class="price">'  + value.price + '</td>'
+                	coinList += '<td class="1h">'     + value.percentChange1h  + '</td>' 
+                	coinList += '<td class="24h">'    + value.percentChange24h + '</td>' 
+                	coinList += '<td class="7d">'     + value.percentChange7d  + '</td>' 
+                	coinList += '<td class="30d">'    + value.percentChange30d + '</td>' 
+                	coinList += '<td class="vol24h">' + value.volume24h + '</td>' 
+                	coinList += '<td class="market">' + value.marketCap + '</td>' 
+                	coinList += '</tr>'      
+                })
+                $('#watch').append(coinList);
+                upjquery();
+            },
+            error: function(err){
+                console.log(err)
+            } 
+         })
+}
+
 
 
 
@@ -157,84 +137,56 @@ $(".responsive").slick({
 
 
 //function全部封裝起來 讓setinterval再跑時候讀取	
+	
+function upjquery(){
+	
+//.toLocaleString =>千分位 
+//(undefined, {maximumFractionDigits: 0}) =>去小數點 設1則顯示小數點後1位
+//如果用 (td.toFixed(0)).toLocaleString(); 會失敗 只會顯示無小數點 但不會千分位
 
-function upjquery() {
-
-    //.toLocaleString =>千分位 
-    //(undefined, {maximumFractionDigits: 0}) =>去小數點 設1則顯示小數點後1位
-    //如果用 (td.toFixed(0)).toLocaleString(); 會失敗 只會顯示無小數點 但不會千分位
-
-    $('.vol24h,.market').each(function(i, el) {
-        var td = parseFloat($(el).text());
-        if (!isNaN(td)) {
-            $(el).text('$' + td.toLocaleString(undefined, { maximumFractionDigits: 0 }));
-        }
-    });
-
-
-    //取小數後2位+百分比
+$('.vol24h,.market').each(function(i, el) {
+	var td = parseFloat($(el).text());
+	if (!isNaN(td)) {
+	$(el).text('$' + td.toLocaleString(undefined, {maximumFractionDigits: 0}));
+	}
+});	
 
 
-    $('.1h,.24h,.7d,.30d').each(function(i, el) {
-        var td = parseFloat($(el).text());
-        if (!isNaN(td)) {
-            $(el).text(td.toFixed(2) + '%');
-        }
-    });
-
-    //取小數後兩位 + 前面加上錢字號
-
-    $('.price,.price1').each(function(i, el) {
-        var td = parseFloat($(el).text());
-        if (!isNaN(td)) {
-            $(el).text('$' + td.toFixed(2));
-        }
-    });
+//取小數後2位+百分比
 
 
-    //判斷大於0顯綠 反之顯紅
+$('.1h,.24h,.7d,.30d').each(function(i,el){
+   var td = parseFloat($(el).text());
+   if(!isNaN(td)){
+      $(el).text(td.toFixed(2) + '%');
+   }
+});	
+
+//取小數後兩位 + 前面加上錢字號
+
+$('.price,.price1').each(function(i,el){
+   var td = parseFloat($(el).text());
+   if(!isNaN(td)){
+      $(el).text('$' + td.toFixed(2));
+   }
+});	
 
 
-    $(function() {
-        $('.1h,.24h,.7d,.30d').each(function() {
-            var elem = $(this),
-                value = parseFloat(elem.text());
-            if (value < 0) {
-                elem.css('color', 'red');
-            }
-            if (value > 0) {
-                elem.css('color', 'green');
-            }
-        });
-    });
+//判斷大於0顯綠 反之顯紅
+
+
+$(function() {
+  $('.1h,.24h,.7d,.30d').each( function() {
+    var elem = $(this) ,
+        value = parseFloat( elem.text() );
+    if( value < 0 ) {
+      elem.css('color', 'red');
+    }
+    if( value > 0 ) {
+      elem.css('color', 'green');
+    }
+  });
+});
 
 }
 
-
-
-
-
-//$(function() {
-//  $('.price').each( function() {
-//    var elem = $(this) ,
-//        value = parseFloat( elem.text() );
-//    if( value < $('.price1').text() ) {
-//      elem.css('color', 'red');
-//    }
-//    if( value > $('.price1').text() ) {
-//      elem.css('color', 'green');
-//    }
-//  });
-//});
-
-
-
-
-//只顯示幾位數
-
-//$('.vol24h,.market').each(function(i,el){
-//   var td = parseFloat($(el).text());
-//   if(!isNaN(td)){
-//      $(el).text('$'+td.toPrecision(11));
-//   }
-//});
