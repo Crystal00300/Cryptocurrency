@@ -37,7 +37,7 @@ public class MembersController {
 	
 //	@PostMapping("/signup")
 //	public String postSignUp(@ModelAttribute("memberBean") Members members) {
-//		SimpleDateFormat sdf = new SimpleDateFormat();
+//		SimpleDateFormat sdf = new SimpleDateFormat();123
 //		Date date = new Date();
 //		// TODO: 之後要寫沒有填 email /pwd 註冊失敗的條件式
 //		sdf.applyPattern("yyyy-MM-dd HH:mm:ss");
