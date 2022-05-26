@@ -95,8 +95,8 @@ body {
 	<div class="container" style="margin-top: 30px; background-color: #fff; border-radius: 30px;">
 		<div class="col-9">
 		<h3>About Coinshell Team</h3>
-		<div>Content Hello how are you?</div>
-		<div>Content Hello how are you?</div>
+		<div>Content Hello how are you? </div>
+		<div>Content Hello how are you? </div>
 			
 			
 		

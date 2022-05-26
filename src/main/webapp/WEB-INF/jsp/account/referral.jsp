@@ -24,7 +24,7 @@ body {
 			<div>#2 Invite friends: Share your referral link to social networks and track the performance of each registered invitee on the Referral page.</div>
 			<div>#3 Earn rewards together: You will both get 20 diamonds when new users accumulate 100 diamonds.</div>
 			<div>FAQs: 4 Hows</div>
-			<span>TO-DO: fullpage.js 全頁式*5</span>
+			<span>TO-DO: fullpage.js 全頁式*5  123</span>
 		</div>
 	</div>
 </body>

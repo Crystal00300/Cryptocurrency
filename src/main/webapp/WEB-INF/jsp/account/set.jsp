@@ -34,7 +34,7 @@
 							</div>
 						</div>
 						<div>
-							<div class="label">User Referral ID</div>
+							<div class="label">User Referral ID  </div>
 							<input type="text" disabled value="${ login.memId }">
 						</div>
 						<div>
