@@ -10,20 +10,19 @@
 <head>
 <meta charset="UTF-8">
 <title>CoinShell</title>
-<link rel="Shortcut Icon" type="image/x-icon"
-	href="https://cdn-icons-png.flaticon.com/512/1490/1490853.png" />
-<link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+<link rel="Shortcut Icon" type="image/x-icon"href="https://cdn-icons-png.flaticon.com/512/1490/1490853.png" />
+
+<link rel="stylesheet" href="${contextRoot}/css/bootstrap.min.css" >
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
+<link rel="stylesheet" type="text/css" href="${contextRoot}/css/indexCss.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 <script src="${contextRoot}/javascripts/indexJs.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="${contextRoot}/css/indexCss.css">
+
 <style type="text/css">
-body{
-padding-top: 82px;
+body {
+	padding-top: 82px;
 }
 </style>
 </head>
