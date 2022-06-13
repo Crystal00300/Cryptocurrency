@@ -12,18 +12,12 @@
 
 
 # Yiwen's pending
-1. 後臺介面(後台人員能登入): `!Important` 登入後能夠增刪查改會員資料、新聞介面、討論區討論串
-2. 控制帳號密碼的格式限制(E-mail不能重複 `!Important` ( modify controller Post/SignUp method )
+1. 控制帳號密碼的格式限制(E-mail不能重複 `!Important` ( modify controller Post/SignUp method )
     ( modify controller Post/SignUp method )
-3. log In表單，希望可以實現 
-    +  Forget Password (Modal + Javax.mail)
-    +  每日 e-mail 電子郵件 (Daily post) `Optional`
-    +  Remember Me checkbox (跟JSESSIONID時間設定相關嗎?) `Optional`
-4. Account Settings 功能 `!Important`
-    +  Update userAvatar, update customized UserName
-    +  Modal * 2
-4. 登入後的下拉選單按鈕改成頭像
-5. About coinshell team 頁面優化
+2. 更改使用者暱稱之後最好有提示 `Name changed successfully!`
+3. `Gen2_intro.jsp` 照片改正常版
+
+
 
 # Bear's pending
 1. 後台設計，Article的CRUD功能引入
