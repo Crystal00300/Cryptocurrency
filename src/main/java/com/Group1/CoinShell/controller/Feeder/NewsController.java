@@ -36,7 +36,7 @@ public class NewsController {
 	private NewsService newsService;
 
 //	@Scheduled(cron="0 0 14 * * ?") //cron表達式 每日14點執行(等於更新當日新聞)
-//	@Scheduled(initialDelay = 2000, fixedRate = 86400000)// 定時器 啟動專案 initialDelay 毫秒 後啟動 每 fixedRate 毫秒 RUN一次
+	@Scheduled(initialDelay = 2000, fixedRate = 86400000)// 定時器 啟動專案 initialDelay 毫秒 後啟動 每 fixedRate 毫秒 RUN一次
 	@PostMapping("news/insert")
 	public void inserNews() throws JsonProcessingException {
 
