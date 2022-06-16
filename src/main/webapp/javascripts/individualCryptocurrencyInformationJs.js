@@ -1,6 +1,6 @@
 $(function() {
-   $("#tabs").tabs();
-   loadHistoricalData();
+    $("#tabs").tabs();
+    loadHistoricalData();
 });
 
 var getUrlString = location.href;
@@ -9,51 +9,51 @@ var currencyName = url.searchParams.get('currencyName');
 var day = url.searchParams.get('currentlyDay');
 
 window.setInterval(function() {
-   upCoin()
+    upCoin()
 }, 10000);
 $(function() {
-   upCoin();
+    upCoin();
 })
 
 
 function upCoin() {
-   $(function() {
-       $("#rank").empty();
-       $("#currentlyPrice").empty();
-       $("#highLowRatio").empty();
-       $("#marketCapByTotalSupply").empty();
-       $("#maxSupply2").empty();
-       $("#Fully-DilutedMarket-Cap_price").empty();
-       $("#volume24h").empty();
-       $("#circulatingSupply").empty()
-       $("#totalSupply").empty()
-       fetch("http://localhost:8080/coinshell/coin/getlastest?currencyName=" + currencyName).then(function(response) {
-           return response.json();
-       }).then(function(jsonObject) {
-           $("#rank").append(`Rank#` + jsonObject.id);
-           $("#currentlyPrice").append(`當前價位:$` + jsonObject.price.toFixed(2).toString().replace(/(\d)(?=(\d{3})+\.)/g, "$1,"));
-           $("#highLowRatio").append(`24h漲跌幅:` + jsonObject.percentChange24h.toFixed(2) + `%`);
-           $("#marketCapByTotalSupply").append(`$` + jsonObject.marketCapByTotalSupply.toFixed(0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, "$1,"));
-           $("#Fully-DilutedMarket-Cap_price").append(`$` + jsonObject.fullyDilluttedMarketCap.toFixed(2).toString().replace(/(\d)(?=(\d{3})+\.)/g, "$1,"));
-           $("#volume24h").append(`$` + jsonObject.volume24h.toFixed(2).toString().replace(/(\d)(?=(\d{3})+\.)/g, "$1,"));
-           $("#circulatingSupply").append(`$` + jsonObject.circulatingSupply.toFixed(2).toString().replace(/(\d)(?=(\d{3})+\.)/g, "$1,"));
-           $("#maxSupply2").append(jsonObject.maxSupply.toFixed(0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, "$1,"));
-           $("#totalSupply").append(jsonObject.totalSupply.toFixed(0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, "$1,"));
+    $(function() {
+        $("#rank").empty();
+        $("#currentlyPrice").empty();
+        $("#highLowRatio").empty();
+        $("#marketCapByTotalSupply").empty();
+        $("#maxSupply2").empty();
+        $("#Fully-DilutedMarket-Cap_price").empty();
+        $("#volume24h").empty();
+        $("#circulatingSupply").empty()
+        $("#totalSupply").empty()
+        fetch("http://localhost:8080/coinshell/coin/getlastest?currencyName=" + currencyName).then(function(response) {
+            return response.json();
+        }).then(function(jsonObject) {
+            $("#rank").append(`Rank#` + jsonObject.id);
+            $("#currentlyPrice").append(`Current Price:$` + jsonObject.price.toFixed(2).toString().replace(/(\d)(?=(\d{3})+\.)/g, "$1,"));
+            $("#highLowRatio").append(jsonObject.percentChange24h.toFixed(2) + `%`);
+            $("#marketCapByTotalSupply").append(`$` + jsonObject.marketCapByTotalSupply.toFixed(0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, "$1,"));
+            $("#Fully-DilutedMarket-Cap_price").append(`$` + jsonObject.fullyDilluttedMarketCap.toFixed(2).toString().replace(/(\d)(?=(\d{3})+\.)/g, "$1,"));
+            $("#volume24h").append(`$` + jsonObject.volume24h.toFixed(2).toString().replace(/(\d)(?=(\d{3})+\.)/g, "$1,"));
+            $("#circulatingSupply").append(`$` + jsonObject.circulatingSupply.toFixed(2).toString().replace(/(\d)(?=(\d{3})+\.)/g, "$1,"));
+            $("#maxSupply2").append(jsonObject.maxSupply.toFixed(0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, "$1,"));
+            $("#totalSupply").append(jsonObject.totalSupply.toFixed(0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, "$1,"));
 
-       })
+        })
 
-   })
+    })
 }
 
 
 //控制新聞
 $("#page-news").click(function() {
-   $("#news").empty();
-   fetch("http://localhost:8080/coinshell/news/get?currencyName=" + currencyName).then(function(response) {
-       return response.json();
-   }).then(function(array) {
-       $.each(array, function(index, value) {
-           $("#news").append(123123 `<div class="card mb-3" style="width: 150;">
+    $("#news").empty();
+    fetch("http://localhost:8080/coinshell/news/get?currencyName=" + currencyName).then(function(response) {
+        return response.json();
+    }).then(function(array) {
+        $.each(array, function(index, value) {
+            $("#news").append(123123 `<div class="card mb-3" style="width: 150;">
    <div class="row no-gutters">
        <div class="col-md-4">
            <img width="300" height="200" src="` + value.imageOfNews + `">
@@ -68,23 +68,23 @@ $("#page-news").click(function() {
        </div>
    </div>
 </div>`)
-       })
-   })
+        })
+    })
 })
 
 //控制歷史數據
 $("#pagehistorical").click(function() {
-   alert(123);
+    alert(123);
 })
 
 function loadHistoricalData() {
-   $("#historicalrow").empty();
-   fetch("http://localhost:8080/coinshell/historical/get?currencyName=" + currencyName).then(function(response) {
-       return response.json();
-   }).then(function(array) {
-       array = array.reverse();
-       $.each(array, function(index, value) {
-           $("#historicalrow").append(`<tr>
+    $("#historicalrow").empty();
+    fetch("http://localhost:8080/coinshell/historical/get?currencyName=" + currencyName).then(function(response) {
+        return response.json();
+    }).then(function(array) {
+        array = array.reverse();
+        $.each(array, function(index, value) {
+            $("#historicalrow").append(`<tr>
                    <th scope="col"> ` + value.day + `</th>
                    <th scope="col">$` + value.Frist_USD_Price_of_Cryptocurrency.toFixed(2).toString().replace(/(\d)(?=(\d{3})+\.)/g, "$1,") + `</th>
 
@@ -94,21 +94,21 @@ function loadHistoricalData() {
                    <th scope="col">$` + value.Volume24hUsd.toFixed(2).toString().replace(/(\d)(?=(\d{3})+\.)/g, "$1,") + `</th>
                    <th scope="col">$` + value.USD_Market_Cap.toFixed(2).toString().replace(/(\d)(?=(\d{3})+\.)/g, "$1,") + `</th>
                </tr>3`);
-       })
-   })
+        })
+    })
 }
 
 $("#page-historical").click(function()
 
-   {
-       alert(123);
-       $("#historical-row").empty()
-       fetch("http://localhost:8080/coinshell/historical/get?currencyName=" + currencyName).then(function(response) {
-           return response.json();
-       }).then(function(array) {
-           $.each(array, function(index, value) {
-               alert(123);
-               $("#historical-row").append(`<tr>
+    {
+        alert(123);
+        $("#historical-row").empty()
+        fetch("http://localhost:8080/coinshell/historical/get?currencyName=" + currencyName).then(function(response) {
+            return response.json();
+        }).then(function(array) {
+            $.each(array, function(index, value) {
+                alert(123);
+                $("#historical-row").append(`<tr>
                    <th scope="col"> ` + value.day + `</th>
                    <th scope="col">` + value.TOP1_USD_Price_of_Cryptocurrency + `</th>
 
@@ -118,9 +118,9 @@ $("#page-historical").click(function()
                    <th scope="col">` + value.Usd24hVolume + `</th>
                    <th scope="col">` + value.UsdMarkCap + `</th>
                </tr>3`);
-           })
-       })
-   }
+            })
+        })
+    }
 
 )
 
@@ -131,64 +131,64 @@ xmlHttp.open("GET", url, true);
 xmlHttp.send();
 
 xmlHttp.onreadystatechange = function() {
-   if (this.readyState == 4 && this.status == 200) {
-       var data = JSON.parse(this.responseText);
-       var days = data.map(function(elem) {
-           return elem.informationDate
-               .substr(0, 14).replace('T', '').replace('-', '').replace('-', '').replace(':', '')
-       });
-       var price = data.map(function(elem) {
-               return elem.USD_Price_of_Cryptocurrency;
-           })
-           // console.log(days)
-           // console.log(price)
-           // document.write(days)
-           // document.write(price)
-       const ctx = document.getElementById('canvas').getContext('2d');
-       const myChart = new Chart(ctx, {
-           type: 'line',
-           data: {
-               labels: days,
-               pointHitRadius: 0,
-               datasets: [{
-                   label: 'US',
-                   data: price,
-                   backgroundColor: [
-                       'transparent'
-                   ],
-                   borderColor: 'green',
-                   borderWidth: 3,
-                   lineTension: 0,
-               }]
-           },
-           options: {
-               plugins: {
-                   tooltip: {
-                       mode: 'nearest',
-                       intersect: false
-                   }
-               },
-               elements: {
-                   line: {
-                       lineTension: 0
-                   },
-                   point: {
-                       radius: 0
-                   }
-               },
-               scales: {
-                   xAxes: [{
-                       type: 'time',
-                       time: {
-                           unit: 'hour',
-                       }
+    if (this.readyState == 4 && this.status == 200) {
+        var data = JSON.parse(this.responseText);
+        var days = data.map(function(elem) {
+            return elem.informationDate
+                .substr(0, 14).replace('T', '').replace('-', '').replace('-', '').replace(':', '')
+        });
+        var price = data.map(function(elem) {
+                return elem.USD_Price_of_Cryptocurrency;
+            })
+            // console.log(days)
+            // console.log(price)
+            // document.write(days)
+            // document.write(price)
+        const ctx = document.getElementById('canvas').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: days,
+                pointHitRadius: 0,
+                datasets: [{
+                    label: 'US',
+                    data: price,
+                    backgroundColor: [
+                        'transparent'
+                    ],
+                    borderColor: 'green',
+                    borderWidth: 3,
+                    lineTension: 0,
+                }]
+            },
+            options: {
+                plugins: {
+                    tooltip: {
+                        mode: 'nearest',
+                        intersect: false
+                    }
+                },
+                elements: {
+                    line: {
+                        lineTension: 0
+                    },
+                    point: {
+                        radius: 0
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        type: 'time',
+                        time: {
+                            unit: 'hour',
+                        }
 
-                   }],
-                   yAxes: {
-                       beginAtZero: false
-                   }
-               }
-           }
-       });
-   }
+                    }],
+                    yAxes: {
+                        beginAtZero: false
+                    }
+                }
+            }
+        });
+    }
 }

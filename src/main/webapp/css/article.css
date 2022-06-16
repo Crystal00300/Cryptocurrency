@@ -1,3 +1,7 @@
+body{
+background-color: rgba(128, 128, 128, 0.22);
+}
+
 #article-content {
    font-size: 16px;
    white-space: pre-wrap; /*css-3*/ 

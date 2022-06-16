@@ -35,47 +35,26 @@
                         <div class="col-sm-4">
                             <div class="text-nowrap">
                                 <div class="icon d-inline-block">
-                                    <img src="./images/currencyIcon/${currencyInformation.symbolOfCryptocurrency}.png" alt="找不到圖片" width="32px" height="32px">
+                                    <img src="./images/currencyIcon/${currencyInformation.symbolOfCryptocurrency}.png" alt="找不到圖片" width="72px" height="72px">
                                 </div>
-                                <div class="text-nowrap d-inline-block">${currencyInformation.symbolOfCryptocurrency}</div>
+                                <div class="text-nowrap d-inline-block" style="font-size:26px;">${currencyInformation.symbolOfCryptocurrency}</div>
 
                                 <button type="button" class="btn btn-info d-inline-block">★</button>
                             </div>
                             <div>
-                                <a href="#" class="badge badge-secondary">${currencyInformation.id-90976}</a>
+                                <a href="#" class="badge badge-secondary" style="font-size:26px;">${currencyInformation.id-90976}</a>
                             </div>
 
 
                         </div>
-                        <div class="col-sm-4">
-                            <div class="text-nowrap ">
-                                <div class="d-inline-block currentlyPrice" id="currentlyPrice">
-                                    當前價位:${currencyInformation.twdPriceOfCryptocurrency}
+                        <div class="col-sm-8">
+                            <div class="text-nowrap col-sm-12">
+                                <div class="d-inline-block currentlyPrice" style="font-size:26px;" id="currentlyPrice">
                                 </div>
-
-                                <div class="d-inline-block badge badge-pill badge-danger" id="highLowRatio">
+                                <div style="font-size:26px;" class="d-inline-block badge badge-pill badge-danger" id="highLowRatio">
                                     漲跌幅:${currencyInformation.percentChange24h}
                                 </div>
 
-                                <div class="lower_highest_price">
-                                    <div class="lower_Price d-inline-block ">
-                                        <span> Low:</span>
-                                        <span>(最低價格)</span>
-                                        <span> High:</span>
-                                        <span>(最高價格)</span>
-                                        <div class="dropdown d-inline-block">
-                                            <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                          24h
-                                        </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="#">24h</a>
-                                                <a class="dropdown-item" href="#">7d</a>
-                                                <a class="dropdown-item" href="#">30d</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
 
 
                             </div>
@@ -86,40 +65,38 @@
                 </div>
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-12ru">
                         </div>
-                        <div class="col-sm-8">
+                        <div class="col-sm-12">
                             <div class="container">
                                 <div class="row row-cols-4">
-                                    <div class="col marketcap">
+                                    <div style="font-size:26px;" class="col marketcap">
                                         <span class="badge badge-primary">Market Cap
                                         </span>
                                         <div class="market_cap_price" id="marketCapByTotalSupply">${currencyInformation.maxSupply}</div>
-                                        <div class="market_cap_fluctuation "><span class="badge badge-pill badge-danger">(漲跌幅)</span></div>
+
                                     </div>
-                                    <div class="col fullydilutedmarketcap">
+                                    <div style="font-size:26px;" class="col-sm-4 fullydilutedmarketcap">
                                         <span class="badge badge-primary">Fully Diluted Market Cap</span>
                                         <div class="Fully-DilutedMarket-Cap_price" id="Fully-DilutedMarket-Cap_price">$(45,002,502)</div>
-                                        <div class="market_cap_fluctuation "><span class="badge badge-pill badge-danger">(漲跌幅)</span>
-                                        </div>
+
                                     </div>
 
-                                    <div class="col volume">
+                                    <divs style="font-size:26px;" class="col-3 volume">
                                         <span class="badge badge-primary">Volume</span>
                                         <div class="volume" id="volume24h">${currencyInformation.volume24hUsd}</div>
-                                        <div class=Volume_fluctuation><span class="badge badge-pill badge-danger ">(漲跌幅)</span>
-                                        </div>
-                                    </div>
-                                    <div class="col circulatingsupply ">
+
+                                    </divs>
+                                    <div style="font-size:26px;" style="font-size:26px;" class="col-sm-2 circulatingsupply">
                                         <span class="badge badge-primary ">Circulating Supply</span>
                                         <div class="Circulating_Supply_price" id="circulatingSupply">${currencyInformation.circulatingSupply}</div>
                                         <div class="Circulating_MaxSupply_Title ">
-                                            <div class="title d-inline-block small text-left "> MaxSupply:</div>
-                                            <div class="maxsupply d-inline-block small" id="maxSupply2">maxSupply:</div>
+                                            <div class="title d-inline-block small text-left" style="font-size:12px;"> MaxSupply:</div>
+                                            <div class="maxsupply d-inline-block small" id="maxSupply2" style="font-size:12px;">maxSupply:</div>
                                         </div>
                                         <div class="Circulating_TotalSupply_Title ">
-                                            <div class="title d-inline-block small text-left "> TotalSupply:</div>
-                                            <div class="totalSupply   d-inline-block small" id="totalSupply"> ${currencyInformation.totalSupply}</div>
+                                            <div class="title d-inline-block small text-left " style="font-size:12px;"> TotalSupply:</div>
+                                            <div class="totalSupply   d-inline-block small" id="totalSupply" style="font-size:12px;"> ${currencyInformation.totalSupply}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -133,13 +110,13 @@
                 <div id="tabs">
                     <ul>
                         <li>
-                            <a href="#overview" id="page-overview">總覽</a> </li>
+                            <a href="#overview" id="page-overview">Overview</a> </li>
                         <li>
-                            <a href="#historical" id="page-historical">歷史資訊</a> </li>
+                            <a href="#historical" id="page-historical">Historical</a> </li>
                         <li>
-                            <a href="#news" id="page-news">新聞</a> </li>
+                            <a href="#news" id="page-news">News</a> </li>
                         <li>
-                            <a href="#article" id="page-article">相關討論</a> </li>
+                            <a href="#article" id="page-article">Forum</a> </li>
                     </ul>
 
                     <div id="overview">
@@ -158,13 +135,13 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">日期</th>
-                                    <th scope="col">開盤</th>
-                                    <th scope="col">最高點</th>
-                                    <th scope="col">最低點</th>
-                                    <th scope="col">收盤價</th>
-                                    <th scope="col">24小時交易量</th>
-                                    <th scope="col">整體市值</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Open</th>
+                                    <th scope="col">High</th>
+                                    <th scope="col">Low</th>
+                                    <th scope="col">Close</th>
+                                    <th scope="col">24hVolume</th>
+                                    <th scope="col">MarketCap</th>
                                 </tr>
                                 <tbody id="historicalrow">
 
@@ -303,7 +280,7 @@
                         // console.log(array);
                         $("#atcTable").append(`
                         <tr class="table-info">
-                        <td><img class="tagImg" src="`+contextRoot+`/images/currencyIcon/`+value.tag+.`png" alt="">` + value.tag + `</td>
+                        <td><img class="tagImg" src="`+contextRoot+`/images/currencyIcon/`+value.tag+`.png" alt="">` + value.tag + `</td>
                         <td><a href="` + contextRoot + `/viewArticle/` + value.id + `" style="display: block;"><div class="b-list"><div>` + value.title + `</div></a><p>` + peek + `....</p></div></td>
                         <td align="center">
                             <label><input type="checkbox" class="check" checked><span class="heart"><i class="fa-solid fa-heart"></i></span>` + value.goodNum + `</label>
@@ -352,7 +329,6 @@
 
             function setNewsbyName() {
                 var name = document.getElementById("name").value;
-                debugger
                 $.ajax({
                     url: "http://localhost:8080/coinshell/news/select?title=" + name,
                     contentType: 'application/json; charset=UTF-8',
@@ -360,6 +336,7 @@
                     method: 'get',
                     success: function(result) {
                         console.log(result)
+                        console.log("成功");
                         $.each(result, function(index, value) {
                             $('#nn1').html(`<a href="#" onclick="window.open('` + result[0].url + `')"><img class="newsimg" src="` + result[0].imgUrl + `" alt=""></a>`);
                             $('#nn2').html(`<a href="#" onclick="window.open('` + result[1].url + `')"><img class="newsimg" src="` + result[1].imgUrl + `" alt=""></a>`);

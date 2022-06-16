@@ -10,6 +10,7 @@
         <head>
             <meta charset="UTF-8">
             <title>新增商品</title>
+            <link rel="stylesheet" href="${contextRoot}/css/backendNews.css">
             <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
             <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
             <script src="${contextRoot}/javascripts/indexJs.js"></script>
@@ -18,16 +19,21 @@
         </head>
 
         <body>
+        <div class="jumbotron col-8 mt-2" style="margin: 0 auto;">
+        <h1 class="display-6">新增商品</h1>
+        <hr class="my-4">
             <form action="commodityUpload" method="post" enctype="multipart/form-data">
-                <br> Commodity Name: <input type="text" name="name" value="我是商品名稱">
+                <br> Commodity Name: <br/>
+                <input type="text" name="name" value="我是商品名稱">
 
-                <div id="Shell"> Shell:<input type="number" value="100" name="shell" min="0" max="2147483647" required></div>
+                <div id="Shell"> Shell: <br/>
+                <input type="number" value="100" name="shell" min="0" max="2147483647" required></div>
 
                 <br> Photo: <input type="file" name="photo" required="required" accept="image/png, image/gif, image/jpeg">
                 <br>
-                <input type="submit" value="送出">
+                <input type="submit" value="Add" class="btn btn-success btn-lg btn-block">
             </form>
-
+		</div>
         </body>
         <script>
         </script>

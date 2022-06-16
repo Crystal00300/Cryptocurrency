@@ -27,18 +27,22 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 
 <style type="text/css">
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,500;0,600;0,700;1,200;1,300&family=Special+Elite&display=swap');
 
 .navbar-custom{
 	background-color: black;
+	font-family: 'Special Elite', cursive;
 }
 .navbar-nav li{
 	font-size:40px;
 	font-weight: 350;
-	font-family: 'Noto Serif TC', serif;
+	font-family: font-family: 'Special Elite', cursive;
 	}
 ul {
 	margin: 0 auto;
+}
+body {
+	font-family: 'Roboto Mono', monospace;
 }
 </style>
 
@@ -56,15 +60,15 @@ ul {
       <li class="nav-item active">
         <a class="nav-link" href="${contextRoot}"><img
 			src="${contextRoot}/images/NavBarImg/logo-ftnd.png"
-			style="height: 70px;" alt="logo"><span class="sr-only"></a>
+			style="height: 60px;" alt="logo"><span class="sr-only"></a>
       </li>
       <li class="nav-item active font-custom">
         <a class="nav-link" href="${contextRoot}/administrator">
         <img src="${contextRoot}/images/NavBarImg/logo-bknd.png"
-			style="height: 70px;" alt="logo"></a>
+			style="height: 60px;" alt="logo">&nbsp;</a>
       </li>
       <li class="nav-item active font-custom">
-        <a class="nav-link" href="administrator/store">Commodities&nbsp;&nbsp;</a>
+        <a class="nav-link" href="administrator/store">Store&nbsp;&nbsp;</a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="${contextRoot}/administrator/news">News&nbsp;&nbsp;</a>

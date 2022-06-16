@@ -13,7 +13,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="${contextRoot}/javascripts/bootstrap.bundle.min.js"></script>
 <meta charset="UTF-8">
-<title>新聞 | CoinShell Backend</title>
+<title>News | CoinShell Backend</title>
 </head>
 <body>
 <p />

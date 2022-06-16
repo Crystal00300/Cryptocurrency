@@ -135,27 +135,27 @@
                                     <input type="hidden" value="${login.id}" name="id">
                                     <input type="radio" name="radio-emotion" id="sad" class="input-hidden" value="1" />
                                     <label for="sad">
-										<img src="${contextRoot}/images/NavBarImg/bubbleAvatar.png" alt="I'm sad" />
+										<img src="${contextRoot}/images/NavBarImg/1_bubbleAvatar.png" alt="Bubble" />
 									</label>
 
                                     <input type="radio" name="radio-emotion" id="happy1" class="input-hidden" value="2" />
                                     <label for="happy1">
-										<img src="${contextRoot}/images/NavBarImg/hulaAvatar.png" alt="I'm happy1" />
+										<img src="${contextRoot}/images/NavBarImg/2_hulaAvatar.png" alt="HulaHoop" />
 									</label>
 
                                     <input type="radio" name="radio-emotion" id="happy2" class="input-hidden" value="3" />
                                     <label for="happy2">
-										<img src="${contextRoot}/images/NavBarImg/magnetaAvatar.png" alt="I'm happy2" />
+										<img src="${contextRoot}/images/NavBarImg/3_magnetaAvatar.png" alt="Magneta" />
 									</label>
 
                                     <input type="radio" name="radio-emotion" id="happy3" class="input-hidden" value="4" />
                                     <label for="happy3">
-										<img src="${contextRoot}/images/NavBarImg/purAvatar.png" alt="I'm happy3" />
+										<img src="${contextRoot}/images/NavBarImg/4_purAvatar.png" alt="Purple" />
 									</label>
 
                                     <input type="radio" name="radio-emotion" id="happy4" class="input-hidden" value="5" />
                                     <label for="happy4">
-										<img src="${contextRoot}/images/NavBarImg/defaultAvatar.png" alt="I'm happy4" />
+										<img src="${contextRoot}/images/NavBarImg/5_defaultAvatar.png" alt="Default" />
 									</label>
                             </form>
 

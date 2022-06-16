@@ -9,7 +9,8 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>全部商品列表</title>
+        <title>All Commodities | Backend Coinshell</title>
+        <link rel="stylesheet" href="${contextRoot}/css/backendNews.css">
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
         <style>

@@ -3,60 +3,66 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <jsp:include page="../backendNavBar.jsp" />
 
-    <head>
-        <meta charset="UTF-8">
-        <title>全部商品列表</title>
-        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-        <style>
-            table,
-            tr,
-            th,
-            td {
-                border: 1px solid black;
-                border-collapse: collapse;
-            }
-        </style>
-    </head>
+<head>
+<meta charset="UTF-8">
+<title>All Commodities | Coinshell Backend</title>
+<link rel="stylesheet" href="${contextRoot}/css/backendNews.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
-    <body>
-        <h1>上架之商品列表</h1>
-        <div id="text-search">
-            <form action="search" method="get">
-                搜尋:<input type="text" name="name">
-                <input type="submit" value="開始搜尋">
-            </form>
+<style type="text/css">
+.zoom:hover {
+	-ms-transform: scale(3);
+	-webkit-transform: scale(3);
+	transform: scale(3);
+}
+table, tr, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+</style>
+</head>
 
-        </div>
-        <div id="commodityList">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Commodity Name</th>
-                        <th>Photo</th>
-                        <th>Describe</th>
-                        <th>Volume</th>
-                        <th>ShellOrCoin</th>
-                        <th>Shell</th>
-                        <th>Coin</th>
-                        <th>Edit</th>
-                        <th>DELETE</th>
-                    </tr>
-                </thead>
-                <tbody>
+<body>
 
-                </tbody>
-            </table>
+		<h1 class="display-6">上架之商品列表</h1>
+		<hr class="my-4">
+	<div id="text-search">
+		<form action="search" method="get">
+			搜尋:<input type="text" name="name"> <input type="submit"
+				value="開始搜尋">
+		</form>
+
+	</div>
+	<div id="commodityList">
+		<table class="table table-hover table-bordered">
+			<thead class="bg-success">
+				<tr>
+					<th scope="col" style="width:5%;">ID</th>
+					<th scope="col" style="width:20%;">Commodity Name</th>
+					<th scope="col" style="width:15%;">Photo</th>
+					<th scope="col" style="width:10%;">Discribe</th>
+					<th scope="col" style="width:10%;">Volume</th>
+					<th scope="col" style="width:10%;">Shell / Coin</th>
+					<th scope="col" style="width:5%;">Shell</th>
+					<th scope="col" style="width:5%;">Coin</th>
+					<th scope="col" style="width:7%;">UPDATE</th>
+					<th scope="col" style="width:8%;">DELETE</th>
+				</tr>
+			</thead>
+			<tbody>
+
+			</tbody>
+		</table>
+
+</div>
 
 
-
-        </div>
-        <script>
+	</div>
+	<script>
             $(function() {
                 $.ajax({
                     method: "GET", //API的訪問方式，GET或POST
@@ -76,8 +82,8 @@
                             <td>` + value.shellOrCoin + `</td>
                             <td>` + value.myShell + `</td>
                             <td>` + value.coin + `</td>
-                            <td> <a href="editCommodity?id=` + value.id + `">編輯</a></td>
-                            <td ><a href="deleteCommodity?id=` + value.id + `">刪除</a> </td> 
+                            <td> <a href="editCommodity?id=` + value.id + `"><button class="btn btn-info">Update</button></a></td>
+                            <td ><a href="deleteCommodity?id=` + value.id + `"><button class="btn btn-danger">Delete</button></a> </td> 
                                 </tr>
                                 `
 
@@ -89,4 +95,4 @@
             })
         </script>
 
-    </body>
+</body>

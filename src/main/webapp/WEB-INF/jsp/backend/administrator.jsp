@@ -19,7 +19,7 @@
 
 
 
-	<h1>後台人員管理介面</h1>
+	<h1>後台管理介面</h1>
 	<h3>Backend Interface for Admins</h3>
 
 

@@ -24,6 +24,10 @@ public interface CryptocurryencyDao extends JpaRepository<Cryptocurrency,Integer
 	public List<Map<String,Object>> find30DaysCurrencyInformation(@Param("currencyName3")String currencyName);
 	//返回指定幣別30天的的json資料
 	
+	@Query(value="select * FROM Cryptocurrency WHERE DATEDIFF(dd,InformationDate,GETDATE())<=7 and Symbol_of_Cryptocurrency =:currencyName3",nativeQuery = true)
+	public List<Map<String,Object>> find7DaysCurrencyInformation(@Param("currencyName3")String currencyName);
+	//返回指定幣別天的的json資料
+	
 	@Query(value="select  InformationDate FROM Cryptocurrency WHERE DATEDIFF(dd,InformationDate,GETDATE())<=30 and Symbol_of_Cryptocurrency =:currencyName3",nativeQuery = true)
 	public List<String> find30DaysCurrencyInformationDate(@Param("currencyName3")String currencyName);
 	//返回指定幣別30天的的json日期資料

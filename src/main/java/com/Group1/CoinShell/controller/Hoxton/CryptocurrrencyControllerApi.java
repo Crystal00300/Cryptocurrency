@@ -32,6 +32,8 @@ public class CryptocurrrencyControllerApi {
 	}
 	//http://localhost:8080/coinshell/historical/get30daysInformationday?currencyName=btc
 	
+
+	
 	
 	@GetMapping("/historical/get30daysUsdPrice")
 	public List<String> find30DaysCurrencyUsdPrice(@RequestParam("currencyName") String currencyName) {
@@ -40,6 +42,12 @@ public class CryptocurrrencyControllerApi {
 	}
 	//http://localhost:8080/coinshell/historical/get30daysUsdPrice?currencyName=btc
 	
+	@GetMapping("/historical/get7daysUsdPrice")
+	public List<Map<String, Object>> find7DaysCurrencyUsdPrice(@RequestParam("currencyName") String currencyName) {
+		List<Map<String, Object>> find7DaysCurrencyInformation = dao.find7DaysCurrencyInformation(currencyName);
+		return find7DaysCurrencyInformation;
+	}
+	//http://localhost:8080/coinshell/historical/get7daysUsdPrice?currencyName=btc
 
 	@GetMapping("historical/get")
 	public List<Map<String, Object>> findHistoricalCurrencyInformation(@RequestParam String currencyName)
