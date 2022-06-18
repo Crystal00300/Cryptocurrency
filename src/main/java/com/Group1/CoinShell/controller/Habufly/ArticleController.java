@@ -9,7 +9,6 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,29 +21,31 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.Group1.CoinShell.model.Habufly.Article;
 import com.Group1.CoinShell.service.Habufly.ArticleService;
-import com.Group1.CoinShell.service.Habufly.CommentService;
 
 @Controller
 public class ArticleController {
 
 	@Autowired
 	private ArticleService aService;
-	@Autowired
-	private CommentService cService;
 
 	@GetMapping("/viewArticle/{id}")
 	public String viewArticle(HttpSession session, Model model, @PathVariable("id") Integer id) throws IOException {
+		//取得文章
 		Article atc = aService.findById(id);
+		model.addAttribute("Article", atc);
 		
+		//取得作者個人圖片
 		Integer authorId = atc.getAuthorId();
 		String img = aService.findImg(authorId);
 		model.addAttribute("img", img);
 		
+		//取得作者暱稱
 		String userName = aService.getUserName(authorId);
 		model.addAttribute("userName", userName);
 		
-		model.addAttribute("Article", atc);
+		//增加此文章瀏覽次數
 		aService.increasePageView(session, id);
+		
 		return "forum/viewArticle";
 	}
 		
@@ -57,9 +58,6 @@ public class ArticleController {
 
 		mav.setViewName("/forum/addArticle");
 
-		Article lastestArticle = aService.getFirstNewArticle();
-		mav.getModel().put("lastestArticle", lastestArticle);
-
 		return mav;
 	}
 
@@ -71,9 +69,6 @@ public class ArticleController {
 		Article newAtc = new Article();
 		mav.getModel().put("article", newAtc);
 
-		// 回傳後顯示最新的那一筆留言
-		Article lastestArticle = aService.getFirstNewArticle();
-		mav.getModel().put("lastestArticle", lastestArticle);
 		mav.setViewName("forum/viewAllArticle");
 		return mav;
 	}
@@ -95,10 +90,8 @@ public class ArticleController {
 	@ResponseBody
 	@GetMapping("/article/viewAllAjaxByTitle")
 	public List<Map<String,Object>> viewArticleByTitle(@RequestParam String titlePart) {
-		List<Map<String,Object>> allAtc;
-
-		allAtc = aService.findByTitle(titlePart);
-//		System.out.println(allAtc);
+		List<Map<String,Object>> allAtc = aService.findByTitle(titlePart);
+		 
 		return allAtc;
 	}
 	// http://localhost:8080/coinshell/article/viewAllAjax?tag=btc
@@ -106,9 +99,8 @@ public class ArticleController {
 	@ResponseBody
 	@GetMapping("/article/viewAllAjaxByAuthorId")
 	public List<Map<String,Object>> viewArticleByAuthorId(@RequestParam String authorId) {
-		List<Map<String,Object>> allAtc;
+		List<Map<String,Object>> allAtc = aService.findByAuthorId(authorId);
 		
-		allAtc = aService.findByAuthorId(authorId);
 		return allAtc;
 	}
 	// http://localhost:8080/coinshell/article/viewAllAjaxByAuthorId?authorId=1
@@ -116,9 +108,8 @@ public class ArticleController {
 	@ResponseBody
 	@GetMapping("/article/viewArticleByGoods")
 	public List<Map<String,Object>> viewArticleByGoods() {
-		List<Map<String,Object>> allAtc;
-		
-		allAtc = aService.findByGoods();
+		List<Map<String,Object>> allAtc = aService.findByGoods();
+
 		return allAtc;
 	}
 	// http://localhost:8080/coinshell/article/viewArticleByGoods
@@ -150,9 +141,13 @@ public class ArticleController {
 	@ResponseBody
 	@GetMapping("/countGoods")
 	public List<Object> countGoods(@RequestParam Integer id, @RequestParam Integer userId) throws IOException {
+		//確認使用者是否對此文章點過讚(1=true,0=false)
 		Integer goods = aService.getGoods(id, userId);
+		
+		//取得文章讚數
 		Article atc = aService.findById(id);
 		Integer goodNum = atc.getGoodNum();
+		
 		List<Object> list = Arrays.asList(goods, goodNum);
 		
 		return list;
@@ -161,7 +156,9 @@ public class ArticleController {
 	@ResponseBody
 	@GetMapping("/doGoods")
 	public void doGoods(@RequestParam Integer id, @RequestParam Integer userId) throws IOException {
+		//確認使用者是否對此文章點過讚(1=true,0=false)
 		Integer goods = aService.getGoods(id, userId);
+		
 		if(goods==0) {
 			aService.increaseGoods(id, userId);
 		}else {
@@ -176,14 +173,15 @@ public class ArticleController {
 	@GetMapping("/viewArticleAdmin/{id}")
 	public String viewArticleAdmin(HttpSession session, Model model, @PathVariable("id") Integer id) throws IOException {
 		Article atc = aService.findById(id);
+		model.addAttribute("Article", atc);
 		
 		Integer authorId = atc.getAuthorId();
 		String img = aService.findImg(authorId);
 		model.addAttribute("img", img);
+		
 		String userName = aService.getUserName(authorId);
 		model.addAttribute("userName", userName);
-		
-		model.addAttribute("Article", atc);
+				
 		aService.increasePageView(session, id);
 		return "backend/article/viewArticleAdmin";
 	}
@@ -254,7 +252,8 @@ public class ArticleController {
 		aService.save(atc);
 		return "backend/article/viewAllArticleAdmin";
 	}
-
+	
+	//幣別選擇器
 	@ModelAttribute("tagList")
 	public Map<String, String> getTags() {
 		Map<String, String> tagList = new LinkedHashMap<String, String>();

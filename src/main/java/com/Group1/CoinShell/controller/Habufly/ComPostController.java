@@ -34,6 +34,13 @@ public class ComPostController {
  // http://localhost:8080/coinshell/viewComment?articleId=1
     
     @ResponseBody
+    @GetMapping("/viewReply")
+    public List<Map<String,Object>> viewReply(@RequestParam Integer articleId, @RequestParam Integer commentId) throws IOException{
+    	List<Map<String,Object>> allReply = cService.selectReply(articleId, commentId);
+    	return allReply;
+    }
+    
+    @ResponseBody
     @GetMapping("/viewReplyAdmin")
     public List<Map<String,Object>> viewReplyAdmin(@RequestParam Integer articleId, @RequestParam Integer commentId) throws IOException{
     	List<Map<String,Object>> allReply = cService.selectReplyAdmin(articleId, commentId);
@@ -46,14 +53,7 @@ public class ComPostController {
     	List<Map<String,Object>> allComm = cService.selectCommAdmin(articleId);
     	return allComm;
     }
- // http://localhost:8080/coinshell/viewComment?articleId=1
-    
-    @ResponseBody
-    @GetMapping("/viewReply")
-    public List<Map<String,Object>> viewReply(@RequestParam Integer articleId, @RequestParam Integer commentId) throws IOException{
-    	List<Map<String,Object>> allReply = cService.selectReply(articleId, commentId);
-    	return allReply;
-    }
+ // http://localhost:8080/coinshell/viewCommentAdmin?articleId=1
     
     @ResponseBody
     @PostMapping("/doComment")
@@ -115,9 +115,8 @@ public class ComPostController {
     @ResponseBody
     @GetMapping("/editSection")
     public List<Map<String,Object>> editSection(@RequestParam Integer cid) throws IOException {
-		List<Map<String,Object>> cR;
-		
-		cR = cService.findCRById(cid);
+		List<Map<String,Object>> cR = cService.findCRById(cid);
+
 		return cR;
     }
  // http://localhost:8080/coinshell/editSection?cid=1
@@ -161,7 +160,7 @@ public class ComPostController {
     @ResponseBody
     @GetMapping("/undoCR")
     public void undoCR(@RequestParam Integer id, @RequestParam Integer articleId)throws IOException {
-    	//刪除
+    	//復原
     	cService.undoCR(id); 
     	
     	//取得該Article的評論數並更新
@@ -169,16 +168,6 @@ public class ComPostController {
         aService.updatCommentNum(articleId, commentNum);
         
     	return;
-    }
-    
-//    @RequestMapping(value = "/manage/deletecomment", method = RequestMethod.POST)
-//    public @ResponseBody String setArticle(@RequestParam int id,@RequestParam int page,HttpServletRequest request)throws IOException{
-////        String Iid = request.getParameter("delete");
-////        int IDid = Integer.parseInt(id);
-////        System.out.println("delete: "+Iid);
-//        commentService.deleteReply(id);          //先刪除所有對評論的回覆
-//        commentService.deleteCom(id);			//刪除評論
-//        return "success";
-//    }
-//
+    }    
+
 }
