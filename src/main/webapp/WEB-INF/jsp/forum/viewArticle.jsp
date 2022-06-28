@@ -103,59 +103,20 @@ $("#submit-c").click(function(){comment()})
 doComment.addEventListener('click',verifyMembership);
 closeComment.addEventListener('click',closeCommentL);
 
-/*點讚功能：verifyMembershipOnload();goods();doGoods();afterGoods*/
-function goods(){
-        $("#goodsSection").empty();
-        let id = document.getElementById("aid").value;
-        let userId = document.getElementById("userId").value;
-        // let goodNum = Number(document.getElementById("goodNum").value);
-        fetch("http://localhost:8080/coinshell/countGoods?id="+id+"&userId="+userId).then(function(response) {
-                return response.json();
-                console.log(response);
-            }).then(function(array) {
-                let count = array[0];
-                let goodNum = array[1];
-                console.log("讚過嗎?"+count+"總讚數"+goodNum);
-            if(count==0){                
-                $("#goodsSection").append(`<label><input type="checkbox" class="check" onClick="doGoods(`+id+`,`+userId+`)"><span class="heart"><i class="fa-solid fa-heart"></i></span>`+goodNum+`</label>`)
-            }else{                
-                $("#goodsSection").append(`<label><input type="checkbox" class="check" checked onClick="doGoods(`+id+`,`+userId+`)"><span class="heart"><i class="fa-solid fa-heart"></i></span>`+goodNum+`</label>`)
-            }
-        })
-}
-
-function doGoods(id, userId) {
-    if ("${login == null }" == "true") {
-        $('#loginModal').modal("show")
-    }else{
-        fetch("http://localhost:8080/coinshell/doGoods?id="+id+"&userId="+userId)
-        .then(function(result){console.log("result====" + result.status);console.log("成功")})
-        .catch(err => console.log(err))
-        .then(function(){
-            wait(100);
-            afterGoods()
-        })
-    }
-}
-
-function afterGoods(){
-    $("#goodsSection").empty();
-    let id = document.getElementById("aid").value;
-    let userId = document.getElementById("userId").value;
-    // let goodNum = Number(document.getElementById("goodNum").value);
-    fetch("http://localhost:8080/coinshell/countGoods?id="+id+"&userId="+userId).then(function(response) {
-            return response.json();
-            console.log(response);
-        }).then(function(array) {
-            let count = array[0];
-            let goodNum = array[1];
-            console.log("讚過嗎?"+count+"總讚數"+goodNum);
-        if(count==0){                
-            $("#goodsSection").append(`<label><input type="checkbox" class="check" onClick="doGoods(`+id+`,`+userId+`)"><span class="heart"><i class="fa-solid fa-heart"></i></span>`+goodNum+`</label>`)
-        }else{                
-            $("#goodsSection").append(`<label><input type="checkbox" class="check" checked onClick="doGoods(`+id+`,`+userId+`)"><span class="heart"><i class="fa-solid fa-heart"></i></span>`+goodNum+`</label>`)
-        }
-    })
+function getAtcTime() {
+    $("#added").empty();
+    var atcAdded = document.getElementById("atcAdded").value;
+    console.log("時間是"+atcAdded);
+    var added = new Date(Date.parse(atcAdded));//Fri Jul 15 2016 16:23:49 GMT+0800 (CST)
+    var YYYY = added.getFullYear();
+    var MM = added.getMonth()+1;
+    var dd = added.getDate();
+    var HH = added.getHours();
+    var mm = added.getMinutes();
+    var weekIndex = added.getDay();
+    var weekDay = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+    var weekDayPrint = weekDay[weekIndex];
+    $("#added").append(YYYY+`-`+MM+`-`+dd+` `+HH+`:`+mm+` `+weekDayPrint);
 }
 
 function verifyMembershipOnload(){
@@ -240,22 +201,6 @@ function switchPageR(e, id){
     console.log("這是第幾頁"+page);
     replyPagination(replyDataNow, page, id);
     console.log("現在的reply是"+replyDataNow);
-}
-
-function getAtcTime() {
-    $("#added").empty();
-    var atcAdded = document.getElementById("atcAdded").value;
-    console.log("時間是"+atcAdded);
-    var added = new Date(Date.parse(atcAdded));
-    var YYYY = added.getFullYear();
-    var MM = added.getMonth()+1;
-    var dd = added.getDate();
-    var HH = added.getHours();
-    var mm = added.getMinutes();
-    var weekIndex = added.getDay();
-    var weekDay = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-    var weekDayPrint = weekDay[weekIndex];
-    $("#added").append(YYYY+`-`+MM+`-`+dd+` `+HH+`:`+mm+` `+weekDayPrint);
 }
 
 function commentTo(){
@@ -349,6 +294,7 @@ function commPagination(array, nowPage){
     const minData = (currentPage * perpage) - perpage + 1 ;
     const maxData = (currentPage * perpage) ;
     const data = [];
+    //array.forEach((item,index) => {*callback*}) 將item,index值傳入callback中執行迴圈
     array.forEach((item, index) => {
         const num = index + 1;
         if ( num >= minData && num <= maxData) {
@@ -382,7 +328,6 @@ function displayComm(data){
             var id = value.id;
             var cidForReply = value.commentId;   
             var img = value.userAvatar;        
-            // <img class="mr-3 rounded-circle" alt="Bootstrap Media Preview" src="https://i.imgur.com/stD0Q19.jpg" />            
             $("#comment-list").append(`
                     <div class="media-body rounded">
                         <div class="row">
@@ -506,6 +451,7 @@ async function replyPagination(array, nowPage, id){
     const minData = (currentPage * perpage) - perpage + 1 ;
     const maxData = (currentPage * perpage) ;
     const dataR = [];
+    //array.forEach((item,index) => {*callback*}) 將item,index值傳入callback中執行迴圈
     array.forEach((item, index) => {
         const num = index + 1;
         if ( num >= minData && num <= maxData) {
@@ -530,7 +476,7 @@ async function replyPagination(array, nowPage, id){
 function displayReply(data, id){
     $("#reply-list"+id).empty();
     $.each(data, function(index, value) {
-                var added = new Date(Date.parse(value.added));
+                var added = new Date(Date.parse(value.added));//Fri Jul 15 2016 16:23:49 GMT+0800 (CST)
                 var YYYY = added.getFullYear();
                 var MM = added.getMonth()+1;
                 var dd = added.getDate();
@@ -540,8 +486,7 @@ function displayReply(data, id){
                 var weekDay = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
                 var weekDayPrint = weekDay[weekIndex];  
                 var img = value.userAvatar;
-                var thisId = value.id;             
-                // <a class="pr-3" href="#"><img class="rounded-circle" alt="Bootstrap Media Another Preview" src="https://i.imgur.com/xELPaag.jpg" /></a>
+                var thisId = value.id;                             
                 $("#reply-list"+id).append(`
                         <div class="media mt-4">
                             <div class="media-body rounded">
@@ -571,7 +516,6 @@ function displayReply(data, id){
 }
 
 function pageBtnSm(page){
-    // alert(123);
     console.log("page的ID是:"+page.id);
     let str = '';
     const total = page.pageTotal;
@@ -612,18 +556,17 @@ function editSection(e, id){
             console.log(response.json())
         }).then(function(data) {
             $.each(data, function(index, value) {
-                var added = new Date(Date.parse(value.added));
-                var addedFF = Date.parse(value.added);
+                var added = new Date(Date.parse(value.added));//Fri Jul 15 2016 16:23:49 GMT+0800 (CST)
+                var addedFF = Date.parse(value.added);// 1462838400000
                 var YYYY = added.getFullYear();
                 var MM = added.getMonth()+1;
                 var dd = added.getDate();
                 var HH = added.getHours();
                 var mm = added.getMinutes();
                 var weekIndex = added.getDay();
-                var weekDay = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+                var weekDay = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
                 var weekDayPrint = weekDay[weekIndex];  
-                var img = value.userAvatar;                
-                // <a class="pr-3" href="#"><img class="rounded-circle" alt="Bootstrap Media Another Preview" src="https://i.imgur.com/xELPaag.jpg" /></a>
+                var img = value.userAvatar;                                
                 $("#editForm"+id).append(`
                         <div class="reply-l bg-light p-2">
                             <div class="d-flex flex-row align-items-start">
@@ -674,10 +617,9 @@ function editSectionR(e, id){
                 var HH = added.getHours();
                 var mm = added.getMinutes();
                 var weekIndex = added.getDay();
-                var weekDay = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+                var weekDay = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
                 var weekDayPrint = weekDay[weekIndex];  
-                var img = value.userAvatar;                
-                // <a class="pr-3" href="#"><img class="rounded-circle" alt="Bootstrap Media Another Preview" src="https://i.imgur.com/xELPaag.jpg" /></a>
+                var img = value.userAvatar;
                 $("#editFormR"+id).append(`
                         <div class="reply-l bg-light p-2">
                             <div class="d-flex flex-row align-items-start">
@@ -701,6 +643,7 @@ function editSectionR(e, id){
                                 <input type="hidden" id="deleted`+id+`" value="`+value.deleted+`" />
                                 <input type="hidden" id="type`+id+`" value="`+value.type+`" />
                                 <input type="hidden" id="added`+id+`" value="`+addedFF+`" />
+                                <input type="hidden" id="added`+id+`" value="`+added+`" />
                             </li>
                             <li>
                                 <input type="text" id="userEmail-CR`+id+`" size="25" tabindex="3" aria-required='true' value="${login.eMail}"/>
@@ -734,7 +677,6 @@ async function postEdit(id){
         "userId":userIdCR
     }
     var jsonReply = JSON.stringify(reply);
-    console.log("回憶"+reply.added);
     fetch('http://localhost:8080/coinshell/postEdit', {
         method:'POST',
         headers: {
@@ -820,5 +762,61 @@ function deleteR(e, id){
         .then(loadComment())
 }
 }
+
+/*點讚功能：verifyMembershipOnload();goods();doGoods();afterGoods*/
+function goods(){
+        $("#goodsSection").empty();
+        let id = document.getElementById("aid").value;
+        let userId = document.getElementById("userId").value;
+        // let goodNum = Number(document.getElementById("goodNum").value);
+        fetch("http://localhost:8080/coinshell/countGoods?id="+id+"&userId="+userId).then(function(response) {
+                return response.json();
+                console.log(response);
+            }).then(function(array) {
+                let count = array[0];
+                let goodNum = array[1];
+                console.log("讚過嗎?"+count+"總讚數"+goodNum);
+            if(count==0){                
+                $("#goodsSection").append(`<label><input type="checkbox" class="check" onClick="doGoods(`+id+`,`+userId+`)"><span class="heart"><i class="fa-solid fa-heart"></i></span>`+goodNum+`</label>`)
+            }else{                
+                $("#goodsSection").append(`<label><input type="checkbox" class="check" checked onClick="doGoods(`+id+`,`+userId+`)"><span class="heart"><i class="fa-solid fa-heart"></i></span>`+goodNum+`</label>`)
+            }
+        })
+}
+
+function doGoods(id, userId) {
+    if ("${login == null }" == "true") {
+        $('#loginModal').modal("show")
+    }else{
+        fetch("http://localhost:8080/coinshell/doGoods?id="+id+"&userId="+userId)
+        .then(function(result){console.log("result====" + result.status);console.log("成功")})
+        .catch(err => console.log(err))
+        .then(function(){
+            wait(100);
+            afterGoods()
+        })
+    }
+}
+
+function afterGoods(){
+    $("#goodsSection").empty();
+    let id = document.getElementById("aid").value;
+    let userId = document.getElementById("userId").value;
+    // let goodNum = Number(document.getElementById("goodNum").value);
+    fetch("http://localhost:8080/coinshell/countGoods?id="+id+"&userId="+userId).then(function(response) {
+            return response.json();
+            console.log(response);
+        }).then(function(array) {
+            let count = array[0];
+            let goodNum = array[1];
+            console.log("讚過嗎?"+count+"總讚數"+goodNum);
+        if(count==0){                
+            $("#goodsSection").append(`<label><input type="checkbox" class="check" onClick="doGoods(`+id+`,`+userId+`)"><span class="heart"><i class="fa-solid fa-heart"></i></span>`+goodNum+`</label>`)
+        }else{                
+            $("#goodsSection").append(`<label><input type="checkbox" class="check" checked onClick="doGoods(`+id+`,`+userId+`)"><span class="heart"><i class="fa-solid fa-heart"></i></span>`+goodNum+`</label>`)
+        }
+    })
+}
+
 </script>
 </body>

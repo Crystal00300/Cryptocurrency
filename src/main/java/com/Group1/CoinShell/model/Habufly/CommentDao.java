@@ -13,7 +13,7 @@ public interface CommentDao extends JpaRepository<Comment, Integer> {
 		/**
 		 * 查詢未刪除的評論+個人圖片
 		 * */
-		@Query(value = "select c.id,added,article_id as articleId,comment_id as commentId,deleted,text,type,user_name as userName,user_id as userId,ava.userAvatar "
+		@Query(value = "select c.id,added,article_id as articleId,comment_id as commentId,deleted,text,type,m.customizedUserName as userName,user_id as userId,ava.userAvatar "
 				+ "from comment as c "
 				+ "left join "
 				+ "(Members as m inner join CustomizedUserAvatar as ava on m.customizedUserAvatar = ava.id) "
@@ -23,7 +23,7 @@ public interface CommentDao extends JpaRepository<Comment, Integer> {
 		/**
 		 * 查詢所有評論+個人圖片
 		 * */
-		@Query(value = "select c.id,added,article_id as articleId,comment_id as commentId,deleted,text,type,user_name as userName,user_id as userId,ava.userAvatar "
+		@Query(value = "select c.id,added,article_id as articleId,comment_id as commentId,deleted,text,type,m.customizedUserName as userName,user_id as userId,ava.userAvatar "
 				+ "from comment as c "
 				+ "left join "
 				+ "(Members as m inner join CustomizedUserAvatar as ava on m.customizedUserAvatar = ava.id) "
@@ -33,7 +33,7 @@ public interface CommentDao extends JpaRepository<Comment, Integer> {
 		/**
 		 * 查詢未刪除的回覆+個人圖片
 		 * */
-		@Query(value = "select c.id,added,article_id as articleId,comment_id as commentId,deleted,text,type,user_name as userName,user_id as userId,ava.userAvatar "
+		@Query(value = "select c.id,added,article_id as articleId,comment_id as commentId,deleted,text,type,m.customizedUserName as userName,user_id as userId,ava.userAvatar "
 				+ "from comment as c "
 				+ "left join "
 				+ "(Members as m inner join CustomizedUserAvatar as ava on m.customizedUserAvatar = ava.id) "
@@ -43,7 +43,7 @@ public interface CommentDao extends JpaRepository<Comment, Integer> {
 		/**
 		 * 查詢所有回覆+個人圖片
 		 * */
-		@Query(value = "select c.id,added,article_id as articleId,comment_id as commentId,deleted,text,type,user_name as userName,user_id as userId,ava.userAvatar "
+		@Query(value = "select c.id,added,article_id as articleId,comment_id as commentId,deleted,text,type,m.customizedUserName as userName,user_id as userId,ava.userAvatar "
 				+ "from comment as c "
 				+ "left join "
 				+ "(Members as m inner join CustomizedUserAvatar as ava on m.customizedUserAvatar = ava.id) "
@@ -59,7 +59,7 @@ public interface CommentDao extends JpaRepository<Comment, Integer> {
 		/**
 		 * 取得特定評論或回覆+個人圖片
 		 * */
-		@Query(value = "select c.id,added,article_id as articleId,comment_id as commentId,deleted,text,type,user_name as userName,user_id as userId,ava.userAvatar,user_email as userEmail "
+		@Query(value = "select c.id,added,article_id as articleId,comment_id as commentId,deleted,text,type,m.customizedUserName as userName,user_id as userId,ava.userAvatar,user_email as userEmail "
 				+ "from comment as c "
 				+ "left join "
 				+ "(Members as m inner join CustomizedUserAvatar as ava on m.customizedUserAvatar = ava.id) "
